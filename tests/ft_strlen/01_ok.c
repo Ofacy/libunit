@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_ok.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:59:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:10:23 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 14:31:08 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ int	strlen_ok(void)
 		return (TEST_OK);
 	return (TEST_KO);
 }
-

@@ -6,12 +6,12 @@
 /*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:19:50 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:45:32 by alermolo         ###   ########.fr       */
+/*   Updated: 2024/01/27 14:30:27 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAMEWORK_BONUS_H
-# define FRAMEWORK_BONUS_H
+#ifndef LIBUNIT_BONUS_H
+# define LIBUNIT_BONUS_H
 
 typedef struct s_test
 {

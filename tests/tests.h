@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:11:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:11:49 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 14:31:43 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LAUNCHERS_H
-# define LAUNCHERS_H
+#ifndef TESTS_H
+# define TESTS_H
 
 int	strlen_launcher(void);
 

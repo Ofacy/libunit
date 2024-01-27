@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 13:44:25 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 14:29:35 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int		run_tests(char *funcname, t_test *test);
 
 void	test_list_clear(t_test **test);
 
-int	result(int result, char *funcname, char *testname, t_unit_total *total);
+int		result(int result, char *funcname, char *testname, t_unit_total *total);
 
 #endif
