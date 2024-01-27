@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 11:52:42 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 13:44:25 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,17 @@ typedef struct s_test
 	struct s_test	*next;
 }	t_test;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
+typedef struct s_unit_total
+{
+	int		ok;
+	int		ko;
+}	t_unit_total;
+
+int		add_test(t_test **test, char *name, int (*testm)(void));
+int		run_tests(char *funcname, t_test *test);
+
+void	test_list_clear(t_test **test);
+
+int	result(int result, char *funcname, char *testname, t_unit_total *total);
 
 #endif

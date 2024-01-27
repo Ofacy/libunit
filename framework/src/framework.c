@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   framework.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 11:50:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 13:44:47 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	run_test(t_test *test, t_test *head)
 	if (!pid)
 	{
 		tmp = test->test;
-		(void)head;
+		test_list_clear(&head);
 		exit(tmp());
 	}
 	wait(&status);
@@ -63,31 +63,23 @@ int	run_test(t_test *test, t_test *head)
 	return (TESTER_FAILED);
 }
 
-int	run_tests(t_test *test)
+int	run_tests(char *funcname, t_test *test)
 {
-	int		oks;
-	int		kos;
-	t_test	*tmp;
+	t_unit_total	total;
+	t_test			*tmp;
 
-	oks = 0;
-	kos = 0;
+	total.ok = 0;
+	total.ko = 0;
 	tmp = test;
 	while (tmp)
 	{
-		if (run_test(tmp, test) == 0)
-		{
-			ft_printf("\033[32m[OK]\033[0m %s\n", tmp->name);
-			oks++;
-		}
-		else
-		{
-			ft_printf("\033[31m[KO]\033[0m %s\n", tmp->name);
-			kos++;
-		}
+		if (result(run_test(tmp, test), funcname, tmp->name, &total)
+			== TESTER_FAILED)
+			return (TESTER_FAILED);
 		tmp = tmp->next;
 	}
-	ft_printf("\n%d/%d tests passed\n", oks, kos + oks);
-	if (kos == 0)
+	test_list_clear(&test);
+	if (total.ko == 0)
 		return (0);
 	return (-1);
 }

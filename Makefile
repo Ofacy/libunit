@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 13:25:12 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 13:45:40 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRC_DIR		=		framework/src/
 B_SRC_DIR	=		framework_bonus/src/
 OBJ_DIR		=		.objects
 SOURCES 	=		framework/src/framework.c	\
+	framework/src/test_list_clear.c \
+	framework/src/test_result.c \
 
 #SOURCES_BONUS 	=
 
