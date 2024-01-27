@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 14:23:31 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 15:13:02 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,7 @@ endif
 
 #--compilation rules-----------------------------------------------------------#
 
-all:
-	$(MAKE) libs
-	$(MAKE) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	cp $(LIBFT) ./$(NAME)

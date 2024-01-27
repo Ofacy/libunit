@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:38:28 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:10:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 15:05:24 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 size_t	ft_strlen(const char *s);
 
-int	strlen_segfault(void)
+int	test_segfault(void)
 {
 	const char	*str = NULL;
 

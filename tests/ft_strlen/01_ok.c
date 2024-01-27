@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_ok.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:59:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:31:08 by alermolo         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:05:14 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 size_t	ft_strlen(const char *s);
 
-int	strlen_ok(void)
+int	test_ok(void)
 {
 	const char	*str = "Hello World!";
 

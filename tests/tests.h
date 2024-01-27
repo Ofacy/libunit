@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:11:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:31:43 by alermolo         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:05:49 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
 # define TESTS_H
 
-int	strlen_launcher(void);
+int	test_launcher(void);
 
-int	strlen_ok(void);
-int	strlen_ko(void);
-int	strlen_segfault(void);
-int	strlen_buserror(void);
+int	test_ok(void);
+int	test_ko(void);
+int	test_segfault(void);
+int	test_buserror(void);
 
 #endif

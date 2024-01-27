@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 14:15:11 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 15:08:25 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ all : $(NAME)
 
 .PHONY : test
 test : $(NAME)
-	./$(NAME)
+	-@./$(NAME)
 
 $(NAME) : $(MLX_PATH) $(LIB_PATH) $(OBJS) 
 	$(CC) $(CC_FLAGS) $(OBJS) $(LDLIBS) -o $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_ko.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:39:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:31:15 by alermolo         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:03:08 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 size_t	ft_strlen(const char *s);
 
-int	strlen_ko(void)
+int	test_ko(void)
 {
 	const char	*str = "Hello World!";
 
