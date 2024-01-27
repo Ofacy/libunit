@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 09:30:48 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/07 16:41:45 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
 
-typedef struct s_test
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	i;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

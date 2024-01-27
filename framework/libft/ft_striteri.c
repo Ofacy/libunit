@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 17:17:17 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/07 17:20:07 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
 
-typedef struct s_test
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	i;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

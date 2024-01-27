@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 09:25:24 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/07 10:12:30 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
 
-typedef struct s_test
+char	*ft_strrchr(const char *s, int c)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	foundi;
+	size_t	i;
+	char	foundone;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	foundone = 0;
+	i = 0;
+	foundi = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+		{
+			foundone = 1;
+			foundi = i;
+		}
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	if (foundone == 1)
+	{
+		return ((char *)s + foundi);
+	}
+	return (0);
+}

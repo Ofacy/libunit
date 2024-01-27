@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/08 11:07:51 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/09 13:25:31 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
 
-typedef struct s_test
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
-
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}

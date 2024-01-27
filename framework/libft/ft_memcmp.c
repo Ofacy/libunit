@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 10:30:18 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/09 21:09:19 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include <stddef.h>
 
-typedef struct s_test
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	i;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n && ((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
+		i++;
+	if (i < n)
+		return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+	return (0);
+}

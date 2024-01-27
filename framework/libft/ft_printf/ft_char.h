@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_char.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/10 15:49:41 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/20 13:03:27 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
+#ifndef FT_CHAR_H
+# define FT_CHAR_H
+
 # include <stddef.h>
 
-typedef struct s_test
-{
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
-
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
+size_t	ft_strlen(const char *s);
+int		ft_printchar(int c);
+int		ft_printstr(char *str);
 
 #endif

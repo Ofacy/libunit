@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_number.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/10 14:21:34 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/10 15:56:29 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#ifndef FT_NUMBER_H
+# define FT_NUMBER_H
 
-typedef struct s_test
-{
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
-
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
+int	ft_putnbr_len_fd(int n, int fd, int len);
+int	ft_putunsigned_fd(unsigned int n, int fd, int len);
 
 #endif

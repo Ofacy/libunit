@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_char.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/10 15:49:24 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/20 13:00:55 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include <unistd.h>
 
-typedef struct s_test
+size_t	ft_strlen(const char *s)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	len;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
+	len = 0;
+	while (s[len])
+	{
+		len++;
+	}
+	return (len);
+}
 
-#endif
+int	ft_printchar(int c)
+{
+	return (write(1, &c, 1));
+}
+
+int	ft_printstr(char *str)
+{
+	size_t	len;
+
+	if (str == NULL)
+		return (ft_printstr("(null)"));
+	len = ft_strlen(str);
+	return (write(1, str, len));
+}

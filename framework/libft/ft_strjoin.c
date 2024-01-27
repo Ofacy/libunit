@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 13:31:57 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/09 21:27:56 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
+#include <stdlib.h>
 
-typedef struct s_test
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	strlen;
+	char	*str;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	strlen = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(strlen);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, strlen);
+	ft_strlcat(str, s2, strlen);
+	return (str);
+}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 10:43:33 by alermolo         ###   ########.fr        #
+#    Updated: 2024/01/27 10:49:32 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ BONUS		=	no
 
 #--includes & libraries--------------------------------------------------------#
 
-INC_DIR			=	includes/
-B_INC_DIR		=	bonus/includes_bonus/
+INC_DIR			=	framework/include/
+B_INC_DIR		=	framework_bonus/include/
 LIBFT_DIR		=	framework/libft/
 HEADERS 		=	framework/include/libunit.h
 HEADERS_BONUS 	= 	framework_bonus/include/libnunit_bonus.h
@@ -72,7 +72,7 @@ all:
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $^ $(CFLAGS) $(LIBFT) -o $@
+	ar crs $(NAME) $(OBJECTS)
 
 ifeq ($(BONUS), no)
 $(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)

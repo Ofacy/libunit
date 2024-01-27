@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libunit.h                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 10:56:53 by lcottet          ###   ########.fr       */
+/*   Created: 2023/11/07 12:35:24 by lcottet           #+#    #+#             */
+/*   Updated: 2023/11/09 21:27:11 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBUNIT_H
-# define LIBUNIT_H
-# include <stddef.h>
+#include "libft.h"
+#include <stdint.h>
+#include <stdlib.h>
 
-typedef struct s_test
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char			*name;
-	int				(*test)(void);
-	struct s_test	*next;
-}	t_test;
+	size_t	totalsize;
+	void	*mem;
 
-int	add_test(t_test **test, char *name, int (*testm)(void));
-int	run_tests(t_test *test);
-
-#endif
+	if (size != 0 && nmemb > SIZE_MAX / size)
+		return (0);
+	totalsize = nmemb * size;
+	mem = malloc(totalsize);
+	if (!mem)
+		return (NULL);
+	ft_bzero(mem, totalsize);
+	return (mem);
+}
