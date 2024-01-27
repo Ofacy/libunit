@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 18:41:43 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 23:34:11 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ NAME = real_tests
 
 SRCS = \
 	main.c \
-	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC)) \
 	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
 	$(addprefix $(BZERO_DIR), $(BZERO_SRC)) \
 
@@ -36,16 +35,18 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
+		
+# ATOI_OBJS = $(ATOI_SRC:%c=$(BUILD_DIR)%.o)
 
 BZERO_DIR = bzero/
 BZERO_SRC = \
-			00_launcher.c \
-			01_basic_test.c \
-			02_size_zero.c \
-			03_null.c \
-			04_negative_size.c \
+		00_launcher.c \
+		01_basic_test.c \
+		02_size_zero.c \
+		03_null.c \
+		04_negative_size.c \
 
-BUILD_DIR := .build/
+BUILD_DIR := .build/$(MODULE_DIR)
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
 
@@ -69,10 +70,21 @@ INCLUDES	=	$(HEADERS_DIR) \
 # *** TRACE ****************************************************************** #
 
 TRACE_DIR = .trace/
-STD_TRACE = $(TRACE_DIR)
-DEBUG_TRACE = $(TRACE_DIR)debug_
+ALL_TRACE = $(TRACE_DIR)all_
+ATOI_TRACE = $(TRACE_DIR)atoi_
+BZERO_TRACE = $(TRACE_DIR)bzero_
 
-TRACE :=	$(STD_TRACE)
+ifeq ($(MODE), ATOI)
+TRACE =	$(ATOI_TRACE)
+else ifeq ($(MODE), BZERO)
+TRACE =	$(BZERO_TRACE)
+else
+TRACE = $(ALL_TRACE)
+endif
+
+MODULE = \
+	ATOI \
+	BZERO \
 
 # *** CONFIG ***************************************************************** #
 
@@ -85,7 +97,7 @@ CC_FLAGS = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
 
 MKDIR 		= 	mkdir -p $(@D)
 
-# MAKEFLAGS	= --no-print-directory
+MAKEFLAGS	= --no-print-directory
 
 # *** TARGETS **************************************************************** #
 
@@ -96,13 +108,22 @@ all : $(NAME)
 test : $(NAME)
 	-@./$(NAME)
 
-$(NAME) : $(MLX_PATH) $(LIB_PATH) $(OBJS) 
+$(NAME) : $(LIB_PATH) $(OBJS) $(addsuffix $(NAME), $(TRACE))
 	$(CC) $(CC_FLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+ifdef MODE
+	$(RM) $(ALL_TRACE)$(NAME)
+endif
+ifneq ($(MODE), ATOI)
+	$(RM) $(ATOI_TRACE)$(NAME)
+endif
+ifneq ($(MODE), BZERO)
+	$(RM) $(BZERO_TRACE)$(NAME)
+endif
 	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
 
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEFINE_MODE) $(CPPFLAGS) -c $< -o $@
 
 %.a: FORCE 
 	@$(MAKE) -C $(@D)
@@ -125,11 +146,16 @@ clean :
 fclean :
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
-	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
+	echo "$(YELLOW) $(NAME) all files removed! $(RESET)"
 
 .PHONY : re
 re : fclean
 	$(MAKE)
+
+$(MODULE) :
+	$(MAKE) test MODE=$@ DEFINE_MODE="-D TEST_ALL=0 -D TEST_$@=1" MODULE_DIR="$@/"
+
+$()
 
 .PHONY : print%
 print% :

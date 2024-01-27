@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:33:35 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 20:29:29 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 22:11:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ int	result(int result, char *funcname, char *testname, t_unit_total *total)
 {
 	char	*res;
 
+	res = MSG_OK;
 	if (result == TEST_OK)
-	{
-		res = MSG_OK;
 		total->ok++;
-	}
 	else
 		total->ko++;
 	if (result == SIGSEGV)
@@ -62,7 +60,7 @@ int	result(int result, char *funcname, char *testname, t_unit_total *total)
 		res = MSG_SIGPIPE;
 	else if (result == SIGILL)
 		res = MSG_SIGILL;
-	else if (result != TEST_OK)
+	else
 		res = MSG_KO;
 	if (ft_printf("%s: %s: %s\n", funcname, testname, res) == -1)
 		return (TESTER_FAILED);

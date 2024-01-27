@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 19:33:51 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 22:11:46 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,14 +82,14 @@ $(NAME): $(OBJECTS)
 	ar rs $(NAME) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)
-	@ mkdir -p $(dir $@)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #--libs, debugs & bonus--------------------------------------------------------#
 
 
 $(LIBFT) : FORCE
-	$(MAKE) -C $(@D)
+	@$(MAKE) -C $(@D)
 
 FORCE :
 
