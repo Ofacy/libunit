@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:49:11 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:08:07 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		run_tests(char *funcname, t_test *test);
 
 void	test_list_clear(t_test **test);
 
-int		run_test_stdout(t_test *test, int *exitstatus, t_test *head);
+int		run_test_stdout(t_test *test, t_test *head);
 int		result(int result, char *funcname, char *testname, t_unit_total *total);
 
 #endif
