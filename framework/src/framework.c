@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   framework.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 11:05:36 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 11:50:37 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "libft.h"
 #include "libunit.h"
 
@@ -38,8 +40,27 @@ int	add_test(t_test **test, char *name, int (*testm)(void))
 	return (1);
 }
 
-int	run_test(t_test *test)
+int	run_test(t_test *test, t_test *head)
 {
+	pid_t	pid;
+	int		(*tmp)(void);
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+		return (TESTER_FAILED);
+	if (!pid)
+	{
+		tmp = test->test;
+		(void)head;
+		exit(tmp());
+	}
+	wait(&status);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WIFSIGNALED(status))
+		return (WTERMSIG(status));
+	return (TESTER_FAILED);
 }
 
 int	run_tests(t_test *test)
@@ -53,7 +74,7 @@ int	run_tests(t_test *test)
 	tmp = test;
 	while (tmp)
 	{
-		if (run_test(tmp) == 0)
+		if (run_test(tmp, test) == 0)
 		{
 			ft_printf("\033[32m[OK]\033[0m %s\n", tmp->name);
 			oks++;

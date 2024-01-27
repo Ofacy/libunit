@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 10:49:32 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 13:25:12 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,9 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS_BONUS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 endif
 
+test:
+	$(CC) -Iframework/include -Lframework/libft -L./ tests/main.c tests/ft_strlen/00_launcher.c tests/ft_strlen/01_basic_test.c -lunit -lft
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./a.out
 
 #--libs, debugs & bonus--------------------------------------------------------#
 
