@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   09_underflow.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 10:52:00 by lcottet           #+#    #+#             */
-/*   Updated: 2023/12/19 12:12:19 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 16:14:42 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/27 16:18:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "atoi.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	atoi_underflow_test(void)
 {
-	t_list	*current;
-	t_list	*next;
-
-	current = *lst;
-	while (current)
-	{
-		if (del)
-			del(current->content);
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*lst = NULL;
+	if (ft_atoi("-2147483649") == atoi("-2147483649"))
+		return (TEST_OK);
+	return (TEST_KO);
 }

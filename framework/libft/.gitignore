@@ -1,0 +1,7 @@
+libftTester
+.vscode
+*.o
+*.a
+*.d
+obj
+libft.a

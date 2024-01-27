@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 23:47:46 by lcottet           #+#    #+#             */
-/*   Updated: 2023/11/22 13:25:31 by lcottet          ###   ########.fr       */
+/*   Updated: 2023/12/15 08:51:27 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1042
 #endif
 
 char	*get_shortened_buffer(char *buffer, int torem)
@@ -88,7 +88,7 @@ char	*append_buffer(char *buffer, char *new)
 		ft_strlcpy(join, new, newlen + 1);
 		return (join);
 	}
-	join = ft_strjoin(buffer, new);
+	join = ft_customstrjoin(buffer, new);
 	if (!join)
 	{
 		free(buffer);
@@ -106,26 +106,23 @@ char	*read_fd(char **buffer, int fd)
 
 	tmpbuffer = malloc(BUFFER_SIZE + 1);
 	if (!tmpbuffer)
-	{
-		free(*buffer);
-		*buffer = NULL;
-		return (NULL);
-	}
+		return (free_buff(buffer));
 	while (*buffer == NULL || !ft_strchr(*buffer, '\n'))
 	{
 		read_len = read(fd, tmpbuffer, BUFFER_SIZE);
-		if (read_len <= 0)
+		if (read_len == -1)
 		{
 			free(tmpbuffer);
-			return (NULL);
+			return (free_buff(buffer));
 		}
+		if (read_len == 0)
+			return (free(tmpbuffer), NULL);
 		tmpbuffer[read_len] = '\0';
 		*buffer = append_buffer(*buffer, tmpbuffer);
 		if (!*buffer)
 			return (NULL);
 	}
-	free(tmpbuffer);
-	return (*buffer);
+	return (free(tmpbuffer), *buffer);
 }
 
 char	*get_next_line(int fd)

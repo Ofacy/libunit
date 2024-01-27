@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   template.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:52:54 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 13:08:07 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 16:18:53 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libunit.a"
+#include "libunit.h"
 
 int	test_template(void)
 {
@@ -21,4 +21,3 @@ int	test_template(void)
 		return (TEST_OK);
 	return (TEST_KO);
 }
-

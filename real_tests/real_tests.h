@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   real_tests.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:45:07 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 15:46:27 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 16:42:04 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REAL_TESTS_H
 # define REAL_TESTS_H
 
-
+int	atoi_launcher(void);
 
 #endif

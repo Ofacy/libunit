@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   atoi.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 10:52:00 by lcottet           #+#    #+#             */
-/*   Updated: 2023/12/19 12:12:19 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 15:56:37 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/27 16:15:05 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#ifndef ATOI_H
+# define ATOI_H
+# include <stdlib.h>
+# include "libunit.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*current;
-	t_list	*next;
+int	ft_atoi(char *str);
 
-	current = *lst;
-	while (current)
-	{
-		if (del)
-			del(current->content);
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*lst = NULL;
-}
+int	atoi_basic_test(void);
+int	atoi_maxint_test(void);
+int	atoi_minint_test(void);
+int	atoi_zero_test(void);
+int	atoi_space_test(void);
+int	atoi_space_more_test(void);
+int	atoi_invalid_test(void);
+int	atoi_overflow_test(void);
+int	atoi_underflow_test(void);
+
+#endif

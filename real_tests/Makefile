@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 15:55:39 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 16:41:48 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,20 @@ NAME = real_tests
 
 SRCS = \
 	main.c \
-	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
-	$(addprefix $(ATOI_DIR), $(ATOI_SRC))
-	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
-
-FT_STRLEN_DIR = split/
-FT_STRLEN_SRC = \
-				00_launcher.c \
+	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
 
 ATOI_DIR = atoi/
 ATOI_SRC = \
-				00_launcher.c \
+		00_launcher.c \
+		01_basic.c \
+		02_maxint.c \
+		03_minint.c \
+		04_zero.c \
+		05_space.c \
+		06_space_more.c \
+		07_invalid.c \
+		08_overflow.c \
+		09_underflow.c
 
 BZERO_DIR =
 
@@ -39,7 +42,7 @@ DEPS = $(OBJS:%.o=%.d)
 # *** LIBRARIES ************************************************************** #
 
 LIB_NAME	=	ft \
-				unit
+				unit 
 LIB_PATH 	=	../framework/libft/libft.a \
 				../libunit.a
 
