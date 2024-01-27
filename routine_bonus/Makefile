@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 18:36:29 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 19:34:09 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,35 +15,15 @@ NAME = real_tests
 # *** FILES ****************************************************************** #
 
 SRCS = \
-	main.c \
-	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC)) \
-	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
-	$(addprefix $(BZERO_DIR), $(BZERO_SRC)) \
+	main_bonus.c \
+	$(addprefix $(SIGNAL_DIR), $(SIGNAL_DIR_SRC))
 
-# FT_STRLEN_DIR = split/
-# FT_STRLEN_SRC = \
-# 			00_launcher.c \
-
-ATOI_DIR = atoi/
-ATOI_SRC = \
+SIGNAL_DIR = signal_bonus/
+SIGNAL_SRC = \
 		00_launcher.c \
-		01_basic.c \
-		02_maxint.c \
-		03_minint.c \
-		04_zero.c \
-		05_space.c \
-		06_space_more.c \
-		07_invalid.c \
-		08_overflow.c \
-		09_underflow.c
-
-BZERO_DIR = bzero/
-BZERO_SRC = \
-			00_launcher.c \
-			01_basic_test.c \
-			02_size_zero.c \
-			03_null.c \
-			04_negative_size.c \
+		01_test_sigabrt \
+		02_test_sigfe \
+	
 
 BUILD_DIR := .build/
 
@@ -55,7 +35,7 @@ DEPS = $(OBJS:%.o=%.d)
 
 LIB_NAME	=	ft \
 				unit 
-LIB_PATH 	=	libft/libft.a \
+LIB_PATH 	=	../libft/libft.a \
 				../libunit.a
 
 HEADERS	= tests.h
