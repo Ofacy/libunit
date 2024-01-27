@@ -6,4 +6,5 @@ libunit.a
 */.build
 .objects
 .vscode
+routine_bonus/real_tests
 */*.log
