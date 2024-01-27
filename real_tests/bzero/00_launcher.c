@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   00_launcher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 16:50:16 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 16:05:30 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 16:49:46 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#include "libunit.h"
+#include "bzero.h"
 
-int	main(void)
+int	bzero_launcher(void)
 {
-	int	ret;
+	t_test	*test;
 
-	ret = 0;
-	if (atoi_launcher() == -1)
-		ret = -1;
-	if (bzero_launcher() == -1)
-		ret = -1;
-	return (ret);
+	test = NULL;
+	add_test(&test, "basic test", bzero_basic_test);
+
+	return (run_tests("test", test));
 }

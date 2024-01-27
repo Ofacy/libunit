@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bzero.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 16:50:16 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 16:00:39 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 16:41:10 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#ifndef BZERO_H
+# define BZERO_H
 
-int	main(void)
-{
-	int	ret;
+int	bzero_basic_test(void);
 
-	ret = 0;
-	if (atoi_launcher() == -1)
-		ret = -1;
-	if (bzero_launcher() == -1)
-		ret = -1;
-	return (ret);
-}
+#endif
