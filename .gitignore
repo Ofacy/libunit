@@ -2,3 +2,4 @@
 .vscode
 libunit.a
 a.out
+tests/tests
