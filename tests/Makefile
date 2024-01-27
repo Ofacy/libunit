@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 15:08:25 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 15:43:13 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = \
 	main.c \
 	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
 
-FT_STRLEN_DIR = ft_strlen/
+FT_STRLEN_DIR = results/
 FT_STRLEN_SRC = \
 				00_launcher.c \
 				01_ok.c \
