@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 15:51:35 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 15:55:39 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,18 @@ NAME = real_tests
 SRCS = \
 	main.c \
 	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
+	$(addprefix $(ATOI_DIR), $(ATOI_SRC))
+	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
 
 FT_STRLEN_DIR = split/
 FT_STRLEN_SRC = \
 				00_launcher.c \
 
+ATOI_DIR = atoi/
+ATOI_SRC = \
+				00_launcher.c \
+
+BZERO_DIR =
 
 BUILD_DIR := .build/
 
