@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:49:11 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:06:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define MSG_KO "\033[31m[KO]\033[0m"
 # define MSG_SEGV "\033[33m[SEGV]\033[0m"
 # define MSG_BUSE "\033[33m[BUSE]\033[0m"
+# define MSG_SIGABRT "\033[33m[SIGABRT]\033[0m"
+# define MSG_SIGFPE "\033[33m[SIGFPE]\033[0m"
+# define MSG_SIGPIPE "\033[33m[SIGPIPE]\033[0m"
+# define MSG_SIGILL "\033[33m[SIGILL]\033[0m"
 
 # define MSG_OK_NOCOLOR "[OK]"
 # define MSG_KO_NOCOLOR "[KO]"
