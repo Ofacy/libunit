@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 21:02:44 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 22:30:46 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	is_chunk_equal(char *chunk, char *stdout, size_t *stdoutchar, size_t len)
 }
 
 int	is_stdout_equal(t_test *test, int fd)
-int	is_stdout_equal(t_test *test, int fd)
 {
 	char	*line;
 	size_t	charcnt;
@@ -65,28 +64,37 @@ int	is_stdout_equal(t_test *test, int fd)
 	return (ret);
 }
 
+int	run_stdout_test(int fd[2], t_test *test, t_test *head, t_unit_total total)
+{
+	int	(*tmp)(void);
+	int	ret;
+
+	tmp = test->test;
+	test_list_clear(&head);
+	if (close(total.logfd))
+		exit(TESTER_FAILED);
+	if (close(fd[0]))
+		exit(TESTER_FAILED);
+	if (dup2(fd[1], STDOUT_FILENO) == -1)
+		exit(TESTER_FAILED);
+	if (close(fd[1]))
+		exit(TESTER_FAILED);
+	ret = tmp();
+	close(STDOUT_FILENO);
+	exit(ret);
+}
+
 int	run_test_stdout(t_test *test, t_test *head, t_unit_total total)
 {
 	int		fd[2];
 	pid_t	pid;
-	int		(*tmp)(void);
 
 	if (pipe(fd) == -1)
 		return (-1);
 	pid = fork();
 	if (!pid)
 	{
-		tmp = test->test;
-		test_list_clear(&head);
-		if (close(total.logfd))
-			exit(TESTER_FAILED);
-		if (close(fd[0]))
-			exit(TESTER_FAILED);
-		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			exit(TESTER_FAILED);
-		if (close(fd[1]))
-			exit(TESTER_FAILED);
-		exit(tmp());
+		run_stdout_test(fd, test, head, total);
 	}
 	if (close(fd[1]) == -1)
 		return (is_stdout_equal(test, fd[0]), TESTER_FAILED);

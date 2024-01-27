@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 18:42:53 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 23:11:16 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ int	run_tests(char *funcname, t_test *test)
 	}
 	test_list_clear(&test);
 	if (total.ko == 0)
+	{
+		ft_printf("\n\033[32m%d/%d tests passed!\033[0m\n\n", \
+			total.ok, total.ok + total.ko);
 		return (0);
+	}
+	ft_printf("\n\033[33m%d/%d tests passed!\033[0m\n\n", \
+		total.ok, total.ok + total.ko);
 	return (-1);
 }

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   total_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:21:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 21:04:02 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 23:02:47 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/27 23:03:34 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "routine_bonus.h"
+#include "libunit_bonus.h"
 
-int	main(void)
+t_unit_total	init_total(void)
 {
-	int	ret;
+	t_unit_total	total;
 
-	ret = 0;
-	if (stdout_launcher() == -1)
-		ret = -1;
-	if (signal_bonus_launcher() == -1)
-		ret = -1;
-	return (ret);
+	total.ko = 0;
+	total.ok = 0;
+	return (total);
 }

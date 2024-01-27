@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 21:01:13 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 23:11:45 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define MSG_SIGPIPE_NOCOLOR "[SIGPIPE]"
 # define MSG_SIGILL_NOCOLOR "[SIGILL]"
 
-
 typedef struct s_param
 {
 	unsigned int	timeout;
@@ -60,15 +59,18 @@ typedef struct s_unit_total
 	int	logfd;
 }	t_unit_total;
 
-t_param	param_init(unsigned int timeout, char *stdout);
-int		add_test(t_test **test, char *name, int (*testm)(void));
-int		add_test_param(t_test **test, char *name, int (*testm)(void), \
+t_param			param_init(unsigned int timeout, char *stdout);
+int				add_test(t_test **test, char *name, int (*testm)(void));
+int				add_test_param(t_test **test, char *name, int (*testm)(void), \
 t_param param);
-int		run_tests(char *funcname, t_test *test);
+int				run_tests(char *funcname, t_test *test);
 
-void	test_list_clear(t_test **test);
+void			test_list_clear(t_test **test);
+int				open_logfile(t_unit_total *total, char *funcname);
 
-int		run_test_stdout(t_test *test, t_test *head, t_unit_total total);
-int		result(int result, char *funcname, char *testname, t_unit_total *total);
+int				run_test_stdout(t_test *test, t_test *head, t_unit_total total);
+int				result(int result, char *funcname, char *testname, \
+t_unit_total *total);
+t_unit_total	init_total(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 21:02:30 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 23:07:01 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ int	add_test_param(t_test **test, char *name, int (*testm)(void), t_param param)
 	return (1);
 }
 
-void	fork_normal_test(t_test *test, t_test *head)
+void	fork_normal_test(t_test *test, t_test *head, t_unit_total total)
 {
 	int	(*tmp)(void);
 
 	tmp = test->test;
 	test_list_clear(&head);
+	close(total.logfd);
 	exit(tmp());
 }
 
@@ -67,7 +68,7 @@ int	run_test(t_test *test, t_test *head, t_unit_total total)
 	{
 		pid = fork();
 		if (!pid)
-			fork_normal_test(test, head);
+			fork_normal_test(test, head, total);
 		if (pid == -1)
 			return (TESTER_FAILED);
 	}
@@ -85,27 +86,27 @@ int	run_tests(char *funcname, t_test *test)
 {
 	t_unit_total	total;
 	t_test			*tmp;
-	char			*logfile;
 
-	total.ok = 0;
-	total.ko = 0;
+	total = init_total();
 	tmp = test;
-	logfile = ft_strjoin(funcname, ".log");
-	if (!logfile)
-		return (TESTER_FAILED);
-	total.logfd = open(logfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	free(logfile);
+	total.logfd = open_logfile(&total, funcname);
 	if (total.logfd == -1)
-		return (TESTER_FAILED);
+		return (test_list_clear(&test), TESTER_FAILED);
 	while (tmp)
 	{
 		if (result(run_test(tmp, test, total), funcname, tmp->name, &total)
 			== TESTER_FAILED)
-			return (TESTER_FAILED);
+			return (test_list_clear(&test), TESTER_FAILED);
 		tmp = tmp->next;
 	}
 	test_list_clear(&test);
+	if (close(total.logfd) == -1)
+		return (TESTER_FAILED);
 	if (total.ko == 0)
+	{
+		ft_printf("\n\033[32mAll tests passed!\033[0m\n\n");
 		return (0);
-	return (-1);
+	}
+	return (ft_printf("\n\033[33m%d/%d tests passed!\033[0m\n\n", \
+	total.ok, total.ok + total.ko), -1);
 }

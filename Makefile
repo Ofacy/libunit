@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 19:33:51 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 23:06:43 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SOURCES_BONUS	=	framework_bonus/srcs/framework_bonus.c \
 					framework_bonus/srcs/test_result_bonus.c \
 					framework_bonus/srcs/param_bonus.c \
 					framework_bonus/srcs/stdout_bonus.c \
+					framework_bonus/srcs/logfile_bonus.c \
+					framework_bonus/srcs/total_bonus.c \
 					
 OBJ_DIR		=		.objects
 SOURCES 	=		framework/srcs/framework.c	\
