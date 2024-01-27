@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 23:06:43 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 23:38:07 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,14 +84,14 @@ $(NAME): $(OBJECTS)
 	ar rs $(NAME) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)
-	@ mkdir -p $(dir $@)
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #--libs, debugs & bonus--------------------------------------------------------#
 
 
 $(LIBFT) : FORCE
-	$(MAKE) -C $(@D)
+	@$(MAKE) -C $(@D)
 
 FORCE :
 
