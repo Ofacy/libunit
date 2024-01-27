@@ -7,3 +7,4 @@ libunit.a
 .objects
 .vscode
 routine_bonus/real_tests
+*/*.log
