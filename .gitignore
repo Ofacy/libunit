@@ -2,3 +2,7 @@
 .vscode/c_cpp_properties.json
 tests/tests
 real_tests/real_tests
+libunit.a
+*/.build
+.objects
+.vscode
