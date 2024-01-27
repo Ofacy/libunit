@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 19:34:09 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 19:42:26 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ NAME = real_tests
 
 SRCS = \
 	main_bonus.c \
-	$(addprefix $(SIGNAL_DIR), $(SIGNAL_DIR_SRC))
+	$(addprefix $(SIGNAL_DIR), $(SIGNAL_SRC))
 
-SIGNAL_DIR = signal_bonus/
+SIGNAL_DIR = signals_bonus/
 SIGNAL_SRC = \
 		00_launcher.c \
-		01_test_sigabrt \
-		02_test_sigfe \
+		01_test_sigabrt.c \
+		02_test_sigfpe.c \
 	
 
 BUILD_DIR := .build/
@@ -34,7 +34,8 @@ DEPS = $(OBJS:%.o=%.d)
 # *** LIBRARIES ************************************************************** #
 
 LIB_NAME	=	ft \
-				unit 
+				unit \
+				m
 LIB_PATH 	=	../libft/libft.a \
 				../libunit.a
 
