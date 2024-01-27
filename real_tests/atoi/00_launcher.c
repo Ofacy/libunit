@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_launcher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:57:52 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 16:15:14 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 17:53:55 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	atoi_launcher(void)
 	add_test(&test, "Invalid", atoi_invalid_test);
 	add_test(&test, "Overflow", atoi_overflow_test);
 	add_test(&test, "Underflow", atoi_underflow_test);
-	return (run_tests("atoi", test));
+	return (run_tests("ATOI", test));
 }

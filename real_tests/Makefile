@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 16:54:14 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 18:00:45 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,13 @@ ATOI_SRC = \
 		08_overflow.c \
 		09_underflow.c
 
-BZERO_DIR =
 BZERO_DIR = bzero/
 BZERO_SRC = \
 			00_launcher.c \
 			01_basic_test.c \
+			02_size_zero.c \
+			03_null.c \
+			04_negative_size.c \
 
 BUILD_DIR := .build/
 

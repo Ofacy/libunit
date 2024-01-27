@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_basic_test.c                                    :+:      :+:    :+:   */
+/*   02_null.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:11:13 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 17:46:45 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 17:13:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "libunit.h"
 
-int	bzero_basic_test(void)
+int	bzero_size_zero(void)
 {
 	char	*ptr1;
 	char	*ptr2;
@@ -32,9 +32,8 @@ int	bzero_basic_test(void)
 	}
 	memset(ptr1, '*', 10);
 	memset(ptr2, '*', 10);
-	ft_bzero(ptr1, 3);
-	bzero(ptr2, 3);
-	if (!memcmp(ptr1, ptr2, 10))
+	ft_bzero(ptr1, 0);
+	if (!ft_strncmp(ptr1, ptr2, 10))
 		status = TEST_OK;
 	else
 		status = TEST_KO;

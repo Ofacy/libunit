@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   03_null.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 17:07:49 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 16:11:13 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 17:58:31 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+#include "libunit.h"
 
-int	main(void)
+int	bzero_null(void)
 {
-	int	ret;
-
-	ret = 0;
-	if (atoi_launcher() == -1)
-		ret = -1;
-	if (bzero_launcher() == -1)
-		ret = -1;
-	return (ret);
+	ft_bzero(NULL, 9);
+	return (TEST_OK);
 }

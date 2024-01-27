@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   04_negative_size.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 17:07:49 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 16:11:13 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 18:00:05 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
+#include "libunit.h"
 
-int	main(void)
+int	bzero_negative_size(void)
 {
-	int	ret;
-
-	ret = 0;
-	if (atoi_launcher() == -1)
-		ret = -1;
-	if (bzero_launcher() == -1)
-		ret = -1;
-	return (ret);
+	ft_bzero(NULL, -8);
+	return (TEST_OK);
 }
