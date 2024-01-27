@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stdout_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:55:18 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:21:37 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "get_next_line.h"
 #include "libunit_bonus.h"
 
-int	is_stdout_equal(t_test *test, int *existatus, pid_t pid, int fd)
+int	is_stdout_equal(t_test *test, int fd)
 {
 	char	*line;
 	int		stdoutchar;
@@ -30,7 +30,7 @@ int	is_stdout_equal(t_test *test, int *existatus, pid_t pid, int fd)
 	ret = 1;
 	stdoutchar = TEST_OK;
 	gnlstatus = get_next_line(fd, &line);
-	while (gnlstatus == 0 && line && waitpid(pid, existatus, WNOHANG) == 0)
+	while (gnlstatus == 0 && line)
 	{
 		i = 0;
 		while (ret == TEST_OK && line[i])
@@ -48,7 +48,7 @@ int	is_stdout_equal(t_test *test, int *existatus, pid_t pid, int fd)
 	return (ret);
 }
 
-int	run_test_stdout(t_test *test, int *exitstatus, t_test *head)
+int	run_test_stdout(t_test *test, t_test *head)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -70,5 +70,5 @@ int	run_test_stdout(t_test *test, int *exitstatus, t_test *head)
 		exit(tmp());
 	}
 	close(fd[1]);
-	return (is_stdout_equal(test, exitstatus, pid, fd[0]));
+	return (is_stdout_equal(test, fd[0]));
 }

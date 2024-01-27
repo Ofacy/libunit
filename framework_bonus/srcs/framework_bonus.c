@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   framework_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:51:56 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:21:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	run_test(t_test *test, t_test *head)
 		}
 		if (pid == -1)
 			return (TESTER_FAILED);
-		wait(&status);
 	}
 	else
-		ret = run_test_stdout(test, &status, head);
+		ret = run_test_stdout(test, head);
+	wait(&status);
 	if (WIFEXITED(status) && ret == TEST_OK)
 		return (WEXITSTATUS(status));
 	else if (WIFSIGNALED(status))

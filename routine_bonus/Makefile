@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 20:18:54 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 20:37:24 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = real_tests
 
 SRCS = \
 	main_bonus.c \
-	$(addprefix $(STDOUT_DIR), $(STDOUT_SRC))
+	$(addprefix $(STDOUT_DIR), $(STDOUT_SRC)) \
 	$(addprefix $(SIGNAL_DIR), $(SIGNAL_SRC))
 
 SIGNAL_DIR = signals_bonus/
@@ -24,12 +24,13 @@ SIGNAL_SRC = \
 		00_launcher.c \
 		01_test_sigabrt.c \
 		02_test_sigfpe.c \
+		03_test_sigpipe.c \
+		04_test_sigill.c \
 
 STDOUT_DIR = stdout_bonus/
 STDOUT_SRC = \
 		00_launcher.c \
 		01_basic.c \
-	
 
 BUILD_DIR := .build/
 
