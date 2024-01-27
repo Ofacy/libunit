@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_basic_test.c                                    :+:      :+:    :+:   */
+/*   04_buserror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 12:59:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 13:19:15 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 13:38:26 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 14:10:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 size_t	ft_strlen(const char *s);
 
-int	strlen_basic_test(void)
+int	strlen_buserror(void)
 {
-	const char	*str = "Hello World!";
+	const char	*str = (const char *)0xFFFFFFFFFFFFF;
 
 	if (ft_strlen(str) == strlen(str))
 		return (TEST_OK);
 	return (TEST_KO);
 }
-

@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   02_ko.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 13:09:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 14:02:28 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/27 13:39:30 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/27 14:10:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#include <string.h>
+#include "libunit.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s);
+
+int	strlen_ko(void)
 {
-	strlen_launcher();
+	const char	*str = "Hello World!";
+
+	if (ft_strlen(str) == (size_t)-9)
+		return (TEST_OK);
+	return (TEST_KO);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 13:45:40 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 14:23:31 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,20 @@ BONUS		=	no
 
 #--includes & libraries--------------------------------------------------------#
 
-INC_DIR			=	framework/include/
-B_INC_DIR		=	framework_bonus/include/
+INC_DIR			=	framework/includes/
+B_INC_DIR		=	framework_bonus/includes/
 LIBFT_DIR		=	framework/libft/
-HEADERS 		=	framework/include/libunit.h
+HEADERS 		=	framework/includes/libunit.h
 HEADERS_BONUS 	= 	framework_bonus/include/libnunit_bonus.h
 
 #--sources & objects-----------------------------------------------------------#
 
-SRC_DIR		=		framework/src/
-B_SRC_DIR	=		framework_bonus/src/
+SRC_DIR		=		framework/srcs/
+B_SRC_DIR	=		framework_bonus/srcs/
 OBJ_DIR		=		.objects
-SOURCES 	=		framework/src/framework.c	\
-	framework/src/test_list_clear.c \
-	framework/src/test_result.c \
+SOURCES 	=		framework/srcs/framework.c	\
+					framework/srcs/test_list_clear.c \
+					framework/srcs/test_result.c \
 
 #SOURCES_BONUS 	=
 
@@ -74,7 +74,8 @@ all:
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar crs $(NAME) $(OBJECTS)
+	cp $(LIBFT) ./$(NAME)
+	ar rs $(NAME) $(OBJECTS)
 
 ifeq ($(BONUS), no)
 $(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)
@@ -86,11 +87,14 @@ $(OBJ_DIR)/%.o: %.c $(HEADERS_BONUS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 endif
 
-test:
-	$(CC) -Iframework/include -Lframework/libft -L./ tests/main.c tests/ft_strlen/00_launcher.c tests/ft_strlen/01_basic_test.c -lunit -lft
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes ./a.out
-
 #--libs, debugs & bonus--------------------------------------------------------#
+
+
+$(LIBFT) : FORCE
+	$(MAKE) -C $(@D)
+
+FORCE :
+
 
 libs:
 	$(MAKE) -C $(LIBFT_DIR)
@@ -123,4 +127,4 @@ norm:
 
 #--PHONY-----------------------------------------------------------------------#
 
-.PHONY: all libs debug bonus re clean fclean norm
+.PHONY: all libs debug bonus re clean fclean norm FORCE
