@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 18:38:07 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 19:33:51 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,14 @@ HEADERS_BONUS 	= 	framework_bonus/include/libnunit_bonus.h
 
 #--sources & objects-----------------------------------------------------------#
 
-SRC_DIR		=		framework/srcs/
-B_SRC_DIR	=		framework_bonus/srcs/
+SRC_DIR			=	framework/srcs/
+SRC_DIR_BONUS	=	framework_bonus/srcs/
+SOURCES_BONUS	=	framework_bonus/srcs/framework_bonus.c \
+					framework_bonus/srcs/test_list_clear_bonus.c \
+					framework_bonus/srcs/test_result_bonus.c \
+					framework_bonus/srcs/param_bonus.c \
+					framework_bonus/srcs/stdout_bonus.c \
+					
 OBJ_DIR		=		.objects
 SOURCES 	=		framework/srcs/framework.c	\
 					framework/srcs/test_list_clear.c \
@@ -40,7 +46,7 @@ SOURCES 	=		framework/srcs/framework.c	\
 ifeq ($(BONUS), no)
 CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR)/incs -I $(INC_DIR)
 else
-CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I $(B_INC_DIR)
+CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR)/incs -I $(B_INC_DIR)
 endif
 
 DFLAGS		=	-g3 -fsanitize=address
@@ -75,15 +81,9 @@ $(NAME): $(OBJECTS)
 	cp $(LIBFT) ./$(NAME)
 	ar rs $(NAME) $(OBJECTS)
 
-ifeq ($(BONUS), no)
 $(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
-else
-$(OBJ_DIR)/%.o: %.c $(HEADERS_BONUS) $(LIBFT)
-	@ mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-endif
 
 #--libs, debugs & bonus--------------------------------------------------------#
 
@@ -121,8 +121,13 @@ fclean:
 #--norminette------------------------------------------------------------------#
 
 norm:
-	norminette $(INC_DIR) $(LIBFT_DIR) $(SRC_DIR) $(B_INC_DIR) $(B_SRC_DIR)
+	norminette $(INC_DIR) $(LIBFT_DIR) $(SRC_DIR) $(B_INC_DIR) $(SRC_DIR_BONUS)
 
 #--PHONY-----------------------------------------------------------------------#
+
+.PHONY : print%
+print% :
+	@echo $(patsubst print%,%,$@)=
+	@echo $($(patsubst print%,%,$@))
 
 .PHONY: all libs debug bonus re clean fclean norm FORCE
