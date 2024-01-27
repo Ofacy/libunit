@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 19:34:09 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 19:48:03 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,18 @@ NAME = real_tests
 
 SRCS = \
 	main_bonus.c \
-	$(addprefix $(SIGNAL_DIR), $(SIGNAL_DIR_SRC))
+	$(addprefix $(STDOUT_DIR), $(STDOUT_SRC))
 
 SIGNAL_DIR = signal_bonus/
 SIGNAL_SRC = \
 		00_launcher.c \
 		01_test_sigabrt \
 		02_test_sigfe \
+
+STDOUT_DIR = stdout_bonus/
+STDOUT_SRC = \
+		00_launcher.c \
+		01_basic.c \
 	
 
 BUILD_DIR := .build/
@@ -41,7 +46,7 @@ LIB_PATH 	=	../libft/libft.a \
 HEADERS	= tests.h
 
 INCLUDES	=	$(HEADERS_DIR) \
-				../framework/includes \
+				../framework_bonus/includes \
 				$(dir $(LIB_PATH)) \
 				$(dir $(HEADERS)) \
 
@@ -82,6 +87,9 @@ $(NAME) : $(LIB_PATH) $(OBJS)
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+../libunit.a : FORCE
+	@$(MAKE) -C $(@D) bonus
 
 %.a: FORCE 
 	@$(MAKE) -C $(@D)
