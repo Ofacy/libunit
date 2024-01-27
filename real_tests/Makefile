@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 18:00:45 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 18:40:41 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,6 @@ SRCS = \
 
 # FT_STRLEN_DIR = split/
 # FT_STRLEN_SRC = \
-# 			00_launcher.c \
-
-# ATOI_DIR = atoi/
-# ATOI_SRC = \
 # 			00_launcher.c \
 
 ATOI_DIR = atoi/
@@ -59,7 +55,7 @@ DEPS = $(OBJS:%.o=%.d)
 
 LIB_NAME	=	ft \
 				unit 
-LIB_PATH 	=	../framework/libft/libft.a \
+LIB_PATH 	=	../libft/libft.a \
 				../libunit.a
 
 HEADERS	= tests.h
@@ -67,6 +63,7 @@ HEADERS	= tests.h
 INCLUDES	=	$(HEADERS_DIR) \
 				../framework/includes \
 				$(dir $(LIB_PATH)) \
+				../libft/incs \
 				$(dir $(HEADERS)) \
 
 # *** TRACE ****************************************************************** #

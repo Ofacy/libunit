@@ -5,124 +5,132 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 18:38:40 by ibertran         ###   ########lyon.fr    #
+#    Created: 2023/11/07 11:21:32 by ibertran          #+#    #+#              #
+#    Updated: 2024/01/27 18:37:15 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = tests
+NAME = libft.a
 
-# *** FILES ****************************************************************** #
+# *** FILES  ***************************************************************** #
 
-SRCS = \
-	main.c \
-	$(addprefix $(FT_STRLEN_DIR), $(FT_STRLEN_SRC))
-
-FT_STRLEN_DIR = results/
-FT_STRLEN_SRC = \
-				00_launcher.c \
-				01_ok.c \
-				02_ko.c \
-				03_segfault.c \
-				04_buserror.c \
+include libft_srcs.mk
 
 BUILD_DIR := .build/
 
-OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
+OBJS = $(SRCS:$(SRCS_DIR)%.c=$(BUILD_DIR)%.o)
 
 DEPS = $(OBJS:%.o=%.d)
 
-# *** LIBRARIES ************************************************************** #
-
-LIB_NAME	=	ft \
-				unit
-LIB_PATH 	=	../libft/libft.a \
-				../libunit.a
-
-HEADERS	= tests.h
-
-INCLUDES	=	$(HEADERS_DIR) \
-				../framework/includes \
-				$(LIB_PATH) \
-				$(dir $(HEADERS)) \
+HEADERS = incs/
 
 # *** TRACE ****************************************************************** #
 
 TRACE_DIR = .trace/
-STD_TRACE = $(TRACE_DIR)
-DEBUG_TRACE = $(TRACE_DIR)debug_
 
-TRACE :=	$(STD_TRACE)
+STD_TRACE = $(TRACE_DIR)
+
+TRACE =	$(STD_TRACE)
+
+# *** COMPILER *************************************************************** #
+
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
+
+CPPFLAGS = $(addprefix -I, $(HEADERS))
 
 # *** CONFIG ***************************************************************** #
 
-CFLAGS		=	-Wall -Wextra -Werror -MMD -MP
-CPPFLAGS 	= 	$(addprefix -I, $(INCLUDES))
-LDFLAGS		=	$(addprefix -L, $(dir $(LIB_PATH)))
-LDLIBS		=	$(addprefix -l, $(LIB_NAME))
+AR = ar rc
 
-CC_FLAGS = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+MKDIR = mkdir -p $(@D)
 
-MKDIR 		= 	mkdir -p $(@D)
+MAKEFLAGS = --no-print-directory
 
-# MAKEFLAGS	= --no-print-directory
+# *** DEBUG ****************************************************************** #
+
+ifeq ($(DEBUG),1)
+BUILD_DIR := $(BUILD_DIR)debug/
+
+CFLAGS := $(filter-out -O3,$(CFLAGS)) -g3
+
+TRACE = $(DEBUG_TRACE)
+endif
+
+DEBUG_TRACE = $(TRACE_DIR)debug_
 
 # *** TARGETS **************************************************************** #
 
 .PHONY : all
 all : $(NAME)
 
-.PHONY : test
-test : $(NAME)
-	-@./$(NAME)
-
-$(NAME) : $(MLX_PATH) $(LIB_PATH) $(OBJS) 
-	$(CC) $(CC_FLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
-	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
+$(NAME) : $(OBJS) $(addsuffix $(NAME), $(TRACE))
+	$(AR) $(NAME) $(OBJS)
+ifeq ($(DEBUG),1)
+	@$(RM) $(STD_TRACE)$@
+	@echo "$(BLUE) $(NAME)(DEBUG) has been built! $(RESET)"
+else
+	@$(RM) $(DEBUG_TRACE)$@
+	@echo "$(BLUE) $(NAME) has been built! $(RESET)"
+endif
 
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-%.a: FORCE 
-	@$(MAKE) -C $(@D)
-	
 $(TRACE)% :
 	@$(MKDIR)
 	@touch $@
-
-.PHONY : bonus
-bonus : $(NAME)
 
 -include $(DEPS)
 
 .PHONY : clean
 clean :
 	rm -rf $(BUILD_DIR)
+	rm -rf $(TRACE_DIR)
+	$(RM) norminette.log
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
+	$(RM) $(NAME)
 	rm -rf $(BUILD_DIR)
-	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
+	rm -rf $(TRACE_DIR)
+	$(RM) norminette.log
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
 
 .PHONY : re
 re : fclean
-	$(MAKE)
+	$(MAKE) all
 
+.PHONY : debug
+debug :
+	$(MAKE) DEBUG=1
+
+.PHONY : %debug
+%debug :
+	$(MAKE) $(patsubst %debug,%,$@) DEBUG=1
+
+.PHONY : norminette
+norminette :
+	norminette $(HEADERS) $(SRCS_DIR) > norminette.log; echo -n
+	if [ $$(< norminette.log grep Error | wc -l) -eq 0 ]; \
+		then echo "$(NAME): \e[32;49;1mOK!\e[0m"; \
+		else echo "$(NAME): \e[31;49;1mKO!\e[0m" \
+			&& < norminette.log grep Error; fi
 
 .PHONY : print%
 print% :
 	@echo $(patsubst print%,%,$@)=
 	@echo $($(patsubst print%,%,$@))
-	
+
+test :
+	make debug
+	cc -g3 -Iincs/ vector_test_main.c libft.a
+	valgrind ./a.out
+
 # *** SPECIAL TARGETS ******************************************************** #
 
 .SILENT : clean fclean re debug %debug norminette
-
-.PHONY : FORCE
-FORCE :
 
 # *** FANCY STUFF ************************************************************ #
 
@@ -131,5 +139,3 @@ RED		=	\e[31;49;1m ¯\_(ツ)_/¯ \e[39;41;1m
 GREEN	=	\e[32;49;1m ¯\_(ツ)_/¯ \e[39;42;1m
 YELLOW	=	\e[33;49;1m ¯\_(ツ)_/¯ \e[39;43;1m
 BLUE	=	\e[34;49;1m ¯\_(ツ)_/¯ \e[39;44;1m
-
-# **************************************************************************** #

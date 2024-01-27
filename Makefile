@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 15:13:02 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 18:38:07 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ BONUS		=	no
 
 INC_DIR			=	framework/includes/
 B_INC_DIR		=	framework_bonus/includes/
-LIBFT_DIR		=	framework/libft/
+LIBFT_DIR		=	libft/
 HEADERS 		=	framework/includes/libunit.h
 HEADERS_BONUS 	= 	framework_bonus/include/libnunit_bonus.h
 
@@ -38,9 +38,9 @@ SOURCES 	=		framework/srcs/framework.c	\
 #--flags-----------------------------------------------------------------------#
 
 ifeq ($(BONUS), no)
-CFLAGS		=	-Wall -Wextra -Werror -I $(LIBFT_DIR) -I $(INC_DIR)
+CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR)/incs -I $(INC_DIR)
 else
-CFLAGS		=	-Wall -Wextra -Werror -I $(LIBFT_DIR) -I $(B_INC_DIR)
+CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR) -I $(B_INC_DIR)
 endif
 
 DFLAGS		=	-g3 -fsanitize=address
