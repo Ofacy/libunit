@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 19:48:03 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/27 20:55:57 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ STDOUT_DIR = stdout_bonus/
 STDOUT_SRC = \
 		00_launcher.c \
 		01_basic.c \
+		02_invalidlength.c \
+		03_invalidlength2.c \
+		04_empty.c
 	
 
 BUILD_DIR := .build/

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:55:18 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:38:09 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,53 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include "libunit_bonus.h"
+#include "libft.h"
 
-int	is_stdout_equal(t_test *test, int *existatus, pid_t pid, int fd)
+int	is_chunk_equal(char *chunk, char *stdout, size_t *stdoutchar, size_t len)
 {
-	char	*line;
-	int		stdoutchar;
-	int		ret;
-	int		gnlstatus;
 	size_t	i;
 
-	ret = 1;
-	stdoutchar = TEST_OK;
-	gnlstatus = get_next_line(fd, &line);
-	while (gnlstatus == 0 && line && waitpid(pid, existatus, WNOHANG) == 0)
+	i = 0;
+	while (chunk[i])
 	{
-		i = 0;
-		while (ret == TEST_OK && line[i])
-		{
-			if (line[i] != test->param.stdout[stdoutchar])
-				ret = TEST_KO;
-			stdoutchar++;
-			i++;
-		}
+		if (*stdoutchar > len || !stdout[*stdoutchar] || \
+			chunk[i] != stdout[*stdoutchar])
+			return (TEST_KO);
+		(*stdoutchar)++;
+		i++;
+	}
+	return (TEST_OK);
+}
+
+int	is_stdout_equal(t_test *test, int fd)
+{
+	char	*line;
+	size_t	charcnt;
+	int		ret;
+	int		gnlstatus;
+	size_t	stdoutlen;
+
+	ret = TEST_OK;
+	charcnt = 0;
+	gnlstatus = get_next_line(fd, &line);
+	stdoutlen = ft_strlen(test->param.stdout);
+	while (line)
+	{
+		if (ret == TEST_OK && \
+			is_chunk_equal(line, test->param.stdout, &charcnt, stdoutlen) \
+				!= TEST_OK)
+			ret = TEST_KO;
 		free(line);
 		gnlstatus = get_next_line(fd, &line);
 	}
-	if (gnlstatus == -1)
+	if (close(fd) == -1 || gnlstatus == -1)
 		ret = TESTER_FAILED;
+	if (charcnt != stdoutlen)
+		ret = TEST_KO;
 	return (ret);
 }
 
-int	run_test_stdout(t_test *test, int *exitstatus, t_test *head)
+int	run_test_stdout(t_test *test, t_test *head, t_unit_total total)
 {
 	int		fd[2];
 	pid_t	pid;
@@ -61,6 +77,8 @@ int	run_test_stdout(t_test *test, int *exitstatus, t_test *head)
 	{
 		tmp = test->test;
 		test_list_clear(&head);
+		if (close(total.logfd))
+			exit(TESTER_FAILED);
 		if (close(fd[0]))
 			exit(TESTER_FAILED);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
@@ -69,6 +87,7 @@ int	run_test_stdout(t_test *test, int *exitstatus, t_test *head)
 			exit(TESTER_FAILED);
 		exit(tmp());
 	}
-	close(fd[1]);
-	return (is_stdout_equal(test, exitstatus, pid, fd[0]));
+	if (close(fd[1]) == -1)
+		return (is_stdout_equal(test, fd[0]), TESTER_FAILED);
+	return (is_stdout_equal(test, fd[0]));
 }

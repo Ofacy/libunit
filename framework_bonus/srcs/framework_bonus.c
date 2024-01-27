@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 19:51:56 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:48:49 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,18 @@ int	add_test_param(t_test **test, char *name, int (*testm)(void), t_param param)
 	return (1);
 }
 
-int	run_test(t_test *test, t_test *head)
+void	fork_normal_test(t_test *test, t_test *head)
+{
+	int	(*tmp)(void);
+
+	tmp = test->test;
+	test_list_clear(&head);
+	exit(tmp());
+}
+
+int	run_test(t_test *test, t_test *head, t_unit_total total)
 {
 	pid_t	pid;
-	int		(*tmp)(void);
 	int		status;
 	int		ret;
 
@@ -59,17 +67,13 @@ int	run_test(t_test *test, t_test *head)
 	{
 		pid = fork();
 		if (!pid)
-		{
-			tmp = test->test;
-			test_list_clear(&head);
-			exit(tmp());
-		}
+			fork_normal_test(test, head);
 		if (pid == -1)
 			return (TESTER_FAILED);
-		wait(&status);
 	}
 	else
-		ret = run_test_stdout(test, &status, head);
+		ret = run_test_stdout(test, head, total);
+	wait(&status);
 	if (WIFEXITED(status) && ret == TEST_OK)
 		return (WEXITSTATUS(status));
 	else if (WIFSIGNALED(status))
@@ -95,7 +99,7 @@ int	run_tests(char *funcname, t_test *test)
 		return (TESTER_FAILED);
 	while (tmp)
 	{
-		if (result(run_test(tmp, test), funcname, tmp->name, &total)
+		if (result(run_test(tmp, test, total), funcname, tmp->name, &total)
 			== TESTER_FAILED)
 			return (TESTER_FAILED);
 		tmp = tmp->next;

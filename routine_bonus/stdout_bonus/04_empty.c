@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_bonus.h                                    :+:      :+:    :+:   */
+/*   04_empty.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:43:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 19:42:34 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 20:50:16 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/27 20:55:06 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_BONUS_H
-# define ROUTINE_BONUS_H
+#include <unistd.h>
+#include "libunit_bonus.h"
 
-int	signal_bonus_launcher(void);
-int	stdout_launcher(void);
-
-#endif
+int	stdout_empty_test(void)
+{
+	return (TEST_OK);
+}

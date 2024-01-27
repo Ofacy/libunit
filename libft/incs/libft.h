@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:36:22 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/25 03:48:22 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/27 20:42:00 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,11 @@ void	ft_bzero(void *s, size_t n);
 void	ft_free_array(void **array);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	*ft_strtok(char *str, const char *delimiters);;
-
+char	*ft_strtok(char *str, const char *delimiters);
 /* FT_PRINTF ******************************************************************/
 
-int		ft_printf(const char *str, ...) \
-				__attribute__ ((format (printf, 1, 2)));
-int		ft_dprintf(int fd, const char *str, ...) \
-				__attribute__ ((format (printf, 2, 3)));
-
+int		ft_printf(const char *str, ...);
+int		ft_dprintf(int fd, const char *str, ...);
 /* GET_NEXT_LINE **************************************************************/
 
 // char	*get_next_line_multifd(int fd);

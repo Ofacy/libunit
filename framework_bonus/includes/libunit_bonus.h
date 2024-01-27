@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 20:16:01 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 20:42:19 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define MSG_KO_NOCOLOR "[KO]"
 # define MSG_SEGV_NOCOLOR "[SEGV]"
 # define MSG_BUSE_NOCOLOR "[BUSE]"
-
 
 typedef struct s_param
 {
@@ -64,7 +63,7 @@ int		run_tests(char *funcname, t_test *test);
 
 void	test_list_clear(t_test **test);
 
-int		run_test_stdout(t_test *test, t_test *head);
+int		run_test_stdout(t_test *test, t_test *head, t_unit_total total);
 int		result(int result, char *funcname, char *testname, t_unit_total *total);
 
 #endif

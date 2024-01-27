@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_bonus.h                                    :+:      :+:    :+:   */
+/*   01_basic.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:43:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 19:42:34 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 19:38:04 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/27 20:57:14 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_BONUS_H
-# define ROUTINE_BONUS_H
+#include <unistd.h>
+#include "libunit_bonus.h"
 
-int	signal_bonus_launcher(void);
-int	stdout_launcher(void);
-
-#endif
+int	stdout_basic_test(void)
+{
+	write(1, "OK", 2);
+	return (TEST_OK);
+}
