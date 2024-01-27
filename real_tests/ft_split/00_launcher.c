@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   real_tests.h                                       :+:      :+:    :+:   */
+/*   00_launcher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:45:07 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/27 16:46:44 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 15:55:02 by alermolo          #+#    #+#             */
+/*   Updated: 2024/01/27 16:05:41 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REAL_TESTS_H
-# define REAL_TESTS_H
+#include "libunit.h"
+#include "../real_tests.h"
 
-int	atoi_launcher(void);
+int	test_launcher(void)
+{
+	t_test	*test;
 
-#endif
+	test = NULL;
+	add_test(&test, "Basic test", split_basic_test());
+	return (run_tests("test", test));
+}
