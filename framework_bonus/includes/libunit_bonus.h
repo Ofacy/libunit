@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 20:42:19 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 21:01:13 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@
 # define MSG_KO_NOCOLOR "[KO]"
 # define MSG_SEGV_NOCOLOR "[SEGV]"
 # define MSG_BUSE_NOCOLOR "[BUSE]"
+# define MSG_SIGABRT_NOCOLOR "[SIGABRT]"
+# define MSG_SIGFPE_NOCOLOR "[SIGFPE]"
+# define MSG_SIGPIPE_NOCOLOR "[SIGPIPE]"
+# define MSG_SIGILL_NOCOLOR "[SIGILL]"
+
 
 typedef struct s_param
 {

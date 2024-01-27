@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 18:38:40 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/27 20:56:06 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,14 +46,6 @@ INCLUDES	=	$(HEADERS_DIR) \
 				$(LIB_PATH) \
 				$(dir $(HEADERS)) \
 
-# *** TRACE ****************************************************************** #
-
-TRACE_DIR = .trace/
-STD_TRACE = $(TRACE_DIR)
-DEBUG_TRACE = $(TRACE_DIR)debug_
-
-TRACE :=	$(STD_TRACE)
-
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror -MMD -MP
@@ -76,7 +68,7 @@ all : $(NAME)
 test : $(NAME)
 	-@./$(NAME)
 
-$(NAME) : $(MLX_PATH) $(LIB_PATH) $(OBJS) 
+$(NAME) : $(LIB_PATH) $(OBJS) 
 	$(CC) $(CC_FLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
 	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
 
@@ -86,31 +78,26 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 
 %.a: FORCE 
 	@$(MAKE) -C $(@D)
-	
-$(TRACE)% :
-	@$(MKDIR)
-	@touch $@
-
-.PHONY : bonus
-bonus : $(NAME)
 
 -include $(DEPS)
 
 .PHONY : clean
 clean :
+	$(MAKE) $@ -C ../
 	rm -rf $(BUILD_DIR)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
+	$(MAKE) $@ -C ../
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
 
 .PHONY : re
 re : fclean
+	$(MAKE) $@ -C ../
 	$(MAKE)
-
 
 .PHONY : print%
 print% :

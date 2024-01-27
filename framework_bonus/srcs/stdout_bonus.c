@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 20:38:09 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/27 21:02:44 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	is_chunk_equal(char *chunk, char *stdout, size_t *stdoutchar, size_t len)
 	return (TEST_OK);
 }
 
+int	is_stdout_equal(t_test *test, int fd)
 int	is_stdout_equal(t_test *test, int fd)
 {
 	char	*line;
