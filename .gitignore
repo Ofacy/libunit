@@ -6,3 +6,4 @@ libunit.a
 */.build
 .objects
 .vscode
+*/*.log
