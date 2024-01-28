@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:20:46 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 11:31:44 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,17 @@ BZERO_SRC = \
 		02_size_zero.c \
 		03_null.c \
 		04_negative_size.c \
+
+SPLIT_DIR = split/
+SPLIT_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
+		02_mult_sep.c	\
+		03_sep_start.c	\
+		04_sep_end.c	\
+		05_mult_start_end.c	\
+		06_no_sep.c		\
+		07_empty_string.c	\
 
 BUILD_DIR := .build/$(MODULE_DIR)
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_basic_test.c                                    :+:      :+:    :+:   */
+/*   02_mult_sep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:55:54 by alermolo          #+#    #+#             */
-/*   Updated: 2024/01/28 10:54:46 by alermolo         ###   ########.fr       */
+/*   Updated: 2024/01/28 10:58:47 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 char	**ft_split(char const *s, char c);
 
-int	split_basic_test(void)
+int	split_multiple_sep(void)
 {
-	const char	*str = "Hello World!";
+	const char	*str = "Hello          World!";
 	char		**split;
 	int			i;
 

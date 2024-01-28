@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.h                                            :+:      :+:    :+:   */
+/*   07_empty_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 10:42:04 by alermolo          #+#    #+#             */
-/*   Updated: 2024/01/28 11:18:22 by alermolo         ###   ########.fr       */
+/*   Created: 2024/01/27 15:55:54 by alermolo          #+#    #+#             */
+/*   Updated: 2024/01/28 11:18:09 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPLIT_H
-# define SPLIT_H
+#include <string.h>
+#include "libunit.h"
+#include "split.h"
 
-# include <stdlib.h>
+char	**ft_split(char const *s, char c);
 
-int	split_basic_test(void);
-int	split_multiple_sep(void);
-int	split_sep_start(void);
-int	split_sep_end(void);
-int	split_mult_start_end(void);
-int	split_no_sep(void);
-int	split_empty(void);
+int	split_empty(void)
+{
+	const char	*str = "";
+	char		**split;
+	int			i;
 
-#endif
+	i = 0;
+	split = ft_split(str, ' ');
+	if (!split[0])
+	{
+		while (split[i])
+			free(split[i++]);
+		free(split);
+		return (TEST_OK);
+	}
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	return (TEST_KO);
+}
