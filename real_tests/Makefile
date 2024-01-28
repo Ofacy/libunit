@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 12:02:58 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 12:31:00 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,12 +169,17 @@ bonus : $(NAME)
 .PHONY : clean
 clean :
 	rm -rf $(BUILD_DIR)
+	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
+	$(MAKE) $@ -C $(dir ../libft/libft.a)
+	$(MAKE) $@ -C $(dir ../libunit.a)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
+	$(MAKE) $@ -C $(dir ../libft/libft.a)
+	$(MAKE) $@ -C $(dir ../libunit.a)
 	echo "$(YELLOW) $(NAME) all files removed! $(RESET)"
 
 .PHONY : re
@@ -183,8 +188,6 @@ re : fclean
 
 $(MODULE) :
 	@$(MAKE) test MODE=$@ DEFINE_MODE="-D TEST_ALL=0 -D TEST_$@=1" MODULE_DIR="$@/"
-
-$()
 
 .PHONY : print%
 print% :

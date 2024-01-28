@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:45:50 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 12:48:41 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ STDOUT_SRC = \
 		02_invalidlength.c \
 		03_invalidlength2.c \
 		04_empty.c
-	
 
 BUILD_DIR := .build/
 
@@ -98,7 +97,7 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 ../libunit.a : FORCE
 	@$(MAKE) -C $(@D) bonus
 
-%.a: FORCE 
+../libft/libft.a: FORCE 
 	@$(MAKE) -C $(@D)
 	
 $(TRACE)% :
@@ -112,11 +111,15 @@ bonus : $(NAME)
 
 .PHONY : clean
 clean :
+	@$(MAKE) $@ -C $(dir ../libft/libft.a)
+	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
+	@$(MAKE) $@ -C $(dir ../libft/libft.a)
+	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE_DIR)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
