@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 10:35:02 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 16:14:32 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ DEPS = $(OBJS:%.o=%.d)
 LIB_NAME	=	ft \
 				unit
 LIB_PATH 	=	../libft/libft.a \
-				../libunit.a
+				../framework/libunit.a
 
 HEADERS	= tests.h
 
@@ -83,13 +83,13 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 
 .PHONY : clean
 clean :
-	$(MAKE) $@ -C ../
+	$(MAKE) $@ -C $(dir ../framework/libunit.a)
 	rm -rf $(BUILD_DIR)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
-	$(MAKE) $@ -C ../
+	$(MAKE) $@ -C $(dir ../framework/libunit.a)
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"

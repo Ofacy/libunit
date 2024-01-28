@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 14:13:59 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 16:19:21 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ DEPS = $(OBJS:%.o=%.d)
 LIB_NAME	=	ft \
 				unit
 LIB_PATH 	=	../libft/libft.a \
-				../libunit.a
+				../framework/libunit.a
 
 HEADERS	= tests.h
 
@@ -171,15 +171,15 @@ clean :
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
 	$(MAKE) $@ -C $(dir ../libft/libft.a)
-	$(MAKE) $@ -C $(dir ../libunit.a)
+	$(MAKE) $@ -C $(dir ../framework/libunit.a)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
-	rm -rf $(BUILD_DIR)
-	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
+	rm -rf $(BUILD_DIR) $(TRACE_DIR)
+	$(RM) $(NAME) $(NAME_BONUS) 
 	$(MAKE) $@ -C $(dir ../libft/libft.a)
-	$(MAKE) $@ -C $(dir ../libunit.a)
+	$(MAKE) $@ -C $(dir ../framework/libunit.a)
 	echo "$(YELLOW) $(NAME) all files removed! $(RESET)"
 
 .PHONY : re

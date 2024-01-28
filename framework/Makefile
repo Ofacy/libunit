@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/28 14:32:09 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 16:16:09 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,40 +23,37 @@ BONUS		=	no
 
 #--includes & libraries--------------------------------------------------------#
 
-INC_DIR			=	framework/includes/
-B_INC_DIR		=	framework_bonus/includes/
-LIBFT_DIR		=	libft/
-HEADERS 		=	framework/includes/libunit.h
-HEADERS_BONUS 	= 	framework_bonus/include/libnunit_bonus.h
+INC_DIR			=	includes/
+B_INC_DIR		=	includes/
+LIBFT_DIR		=	../libft/
+HEADERS 		=	includes/libunit.h
+HEADERS_BONUS 	= 	include/libnunit_bonus.h
 
 #--sources & objects-----------------------------------------------------------#
 
-SRC_DIR			=	framework/srcs/
-SRC_DIR_BONUS	=	framework_bonus/srcs/
-SOURCES_BONUS	=	framework_bonus/srcs/framework_bonus.c \
-					framework_bonus/srcs/test_list_clear_bonus.c \
-					framework_bonus/srcs/test_result_bonus.c \
-					framework_bonus/srcs/param_bonus.c \
-					framework_bonus/srcs/stdout_bonus.c \
-					framework_bonus/srcs/logfile_bonus.c \
-					framework_bonus/srcs/total_bonus.c \
-					framework_bonus/srcs/alarm_bonus.c \
-					framework_bonus/srcs/expected_signal_bonus.c \
-					
-OBJ_DIR		=		.objects
-SOURCES 	=		framework/srcs/framework.c	\
-					framework/srcs/test_list_clear.c \
-					framework/srcs/test_result.c \
+SRC_DIR			=	srcs/
 
-#SOURCES_BONUS 	=
+SOURCES = \
+	srcs/framework.c	\
+	srcs/test_list_clear.c \
+	srcs/test_result.c \
+
+SOURCES_BONUS	= \
+	srcs/framework_bonus.c \
+	srcs/test_list_clear_bonus.c \
+	srcs/test_result_bonus.c \
+	srcs/param_bonus.c \
+	srcs/stdout_bonus.c \
+	srcs/logfile_bonus.c \
+	srcs/total_bonus.c \
+	srcs/alarm_bonus.c \
+	srcs/expected_signal_bonus.c \
+
+OBJ_DIR = .objects
 
 #--flags-----------------------------------------------------------------------#
 
-ifeq ($(BONUS), no)
 CFLAGS		=	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)/incs -I $(INC_DIR)
-else
-CFLAGS		=	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)/incs -I $(B_INC_DIR)
-endif
 
 DFLAGS		=	-g3 -fsanitize=address
 
@@ -82,6 +79,8 @@ DEPS =		$(OBJECTS:%.o=%.d)
 #--global rules----------------------------------------------------------------#
 
 .DEFAULT_GOAL = all
+
+MAKEFLAGS = --no-print-directory
 
 #--compilation rules-----------------------------------------------------------#
 
@@ -121,7 +120,7 @@ re:
 
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(RM) -rf $(OBJECTS)
+	$(RM) -rf $(OBJ_DIR)
 
 fclean:
 	$(MAKE) clean

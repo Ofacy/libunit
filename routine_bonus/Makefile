@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 14:24:53 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 16:21:44 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,22 +65,13 @@ LIB_NAME	=	ft \
 				unit_bonus \
 				m
 LIB_PATH 	=	../libft/libft.a \
-				../libunit_bonus.a
+				../framework/libunit_bonus.a
 
 HEADERS	= tests.h
 
 INCLUDES	=	$(HEADERS_DIR) \
-				../framework_bonus/includes \
-				$(dir $(LIB_PATH)) \
-				$(dir $(HEADERS)) \
-
-# *** TRACE ****************************************************************** #
-
-TRACE_DIR = .trace/
-STD_TRACE = $(TRACE_DIR)
-DEBUG_TRACE = $(TRACE_DIR)debug_
-
-TRACE :=	$(STD_TRACE)
+				../framework/includes \
+				../libft/incs \
 
 # *** CONFIG ***************************************************************** #
 
@@ -93,7 +84,7 @@ CC_FLAGS = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
 
 MKDIR 		= 	mkdir -p $(@D)
 
-MAKEFLAGS	= --no-print-directory
+MAKEFLAGS	=	--no-print-directory
 
 # *** TARGETS **************************************************************** #
 
@@ -112,15 +103,11 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-../libunit_bonus.a : FORCE
+../framework/libunit_bonus.a : FORCE
 	@$(MAKE) -C $(@D) bonus
 
 ../libft/libft.a: FORCE 
 	@$(MAKE) -C $(@D)
-	
-$(TRACE)% :
-	@$(MKDIR)
-	@touch $@
 
 .PHONY : bonus
 bonus : $(NAME)
@@ -130,17 +117,17 @@ bonus : $(NAME)
 .PHONY : clean
 clean :
 	@$(MAKE) $@ -C $(dir ../libft/libft.a)
-	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
+	@$(MAKE) $@ -C $(dir ../framework/libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
-	rm -rf *.log
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
 	@$(MAKE) $@ -C $(dir ../libft/libft.a)
-	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
+	@$(MAKE) $@ -C $(dir ../framework/libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
-	$(RM) $(NAME) $(NAME_BONUS) $(TRACE_DIR)
+	rm -rf *.log
+	$(RM) $(NAME) $(NAME_BONUS)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
 
 .PHONY : re
