@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 20:56:06 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 10:35:02 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ CC_FLAGS = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
 
 MKDIR 		= 	mkdir -p $(@D)
 
-# MAKEFLAGS	= --no-print-directory
+MAKEFLAGS	= --no-print-directory
 
 # *** TARGETS **************************************************************** #
 

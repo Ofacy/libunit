@@ -6,7 +6,7 @@
 #    By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:18:39 by alermolo         ###   ########.fr        #
+#    Updated: 2024/01/28 11:24:17 by alermolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = \
 	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
 	$(addprefix $(BZERO_DIR), $(BZERO_SRC)) \
 	$(addprefix $(SPLIT_DIR), $(SPLIT_SRC)) \
+	$(addprefix $(LSTNEW_DIR), $(LSTNEW_SRC)) \
 
 # FT_STRLEN_DIR = split/
 # FT_STRLEN_SRC = \
@@ -36,8 +37,17 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
+SPLIT_DIR = split/
+SPLIT_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
 
-# ATOI_OBJS = $(ATOI_SRC:%c=$(BUILD_DIR)%.o)
+
+LSTNEW_DIR = lstnew/
+LSTNEW_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
+		02_null_content.c \
 
 BZERO_DIR = bzero/
 BZERO_SRC = \

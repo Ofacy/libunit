@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   framework.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 23:11:16 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 10:29:03 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	add_test(t_test **test, char *name, int (*testm)(void))
 	t_test	*new;
 	t_test	*tmp;
 
+	if (!test || !name || !testm)
+		return (0);
 	new = malloc(sizeof(t_test));
 	if (!new)
 		return (0);

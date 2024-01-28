@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lst_new.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 11:00:38 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/28 10:43:12 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/28 10:57:29 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#ifndef LST_NEW_H
+# define LST_NEW_H
 
-int	main(void)
-{
-	int	ret;
+int	lstnew_basic_test(void);
+int	lstnew_null_contect(void);
 
-	ret = 0;
-	if (TEST_ALL || TEST_ATOI)
-		if (atoi_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_BZERO)
-		if (bzero_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_LSTNEW)
-		if (lst_new_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_SPLIT)
-		if (split_launcher() == -1)
-			ret = -1;
-	return (ret);
-}
+#endif

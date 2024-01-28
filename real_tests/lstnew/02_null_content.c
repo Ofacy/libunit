@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   01_null_content.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 11:00:38 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/28 10:43:57 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/28 10:56:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#include "libft_lst.h"
+#include "libunit.h"
+#include <stdlib.h>
 
-int	main(void)
+int	lstnew_null_contect(void)
 {
-	int	ret;
+	t_list		*new;
 
-	ret = 0;
-	if (TEST_ALL || TEST_ATOI)
-		if (atoi_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_BZERO)
-		if (bzero_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_LSTNEW)
-		if (lst_new_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_SPLIT)
-		if (split_launcher() == -1)
-			ret = -1;
-	return (ret);
+	new = ft_lstnew(NULL);
+	if (new && new->content == NULL && new->next == NULL)
+	{
+		free(new);
+		return (TEST_OK);
+	}
+	free(new);
+	return (TEST_KO);
 }
