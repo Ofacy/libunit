@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   03_segfault.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:21:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 13:57:33 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/27 13:38:28 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/28 13:57:16 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "routine_bonus.h"
+#include <string.h>
+#include "libunit_bonus.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s);
+
+int	test_segfault(void)
 {
-	int	ret;
+	const char	*str = NULL;
 
-	ret = 0;
-	if (stdout_launcher() == -1)
-		ret = -1;
-	if (signal_bonus_launcher() == -1)
-		ret = -1;
-	if (timeout_launcher() == -1)
-		ret = -1;
-	if (expected_signal_launcher() == -1)
-		ret = -1;
-	return (ret);
+	if (ft_strlen(str) == strlen(str))
+		return (TEST_OK);
+	return (TEST_KO);
 }

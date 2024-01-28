@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   alarm_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:21:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 13:57:33 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/28 12:29:04 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/28 12:46:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "routine_bonus.h"
+#include <unistd.h>
+#include <stdlib.h>	
+#include "libunit_bonus.h"
 
-int	main(void)
+static void	alarm_handler(int sig)
 {
-	int	ret;
+	(void)sig;
+	exit(TEST_TIMEOUT);
+}
 
-	ret = 0;
-	if (stdout_launcher() == -1)
-		ret = -1;
-	if (signal_bonus_launcher() == -1)
-		ret = -1;
-	if (timeout_launcher() == -1)
-		ret = -1;
-	if (expected_signal_launcher() == -1)
-		ret = -1;
-	return (ret);
+int	setup_alarm(t_test *test)
+{
+	signal(SIGALRM, alarm_handler);
+	if (test->param.timeout > 0)
+		alarm(test->param.timeout);
+	return (0);
 }

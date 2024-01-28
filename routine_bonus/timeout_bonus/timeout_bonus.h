@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   timeout_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:21:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 13:57:33 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/28 12:33:01 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/28 12:42:11 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "routine_bonus.h"
+#ifndef TIMEOUT_BONUS_H
+# define TIMEOUT_BONUS_H
 
-int	main(void)
-{
-	int	ret;
+# include "libunit_bonus.h"
 
-	ret = 0;
-	if (stdout_launcher() == -1)
-		ret = -1;
-	if (signal_bonus_launcher() == -1)
-		ret = -1;
-	if (timeout_launcher() == -1)
-		ret = -1;
-	if (expected_signal_launcher() == -1)
-		ret = -1;
-	return (ret);
-}
+int	timeout_basic(void);
+int	timeout_ok(void);
+
+#endif

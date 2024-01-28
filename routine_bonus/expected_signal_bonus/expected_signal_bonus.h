@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   expected_signal_bonus.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 18:21:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 13:57:33 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/28 14:00:40 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/28 14:09:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "routine_bonus.h"
+#ifndef EXPECTED_SIGNAL_BONUS_H
+# define EXPECTED_SIGNAL_BONUS_H
 
-int	main(void)
-{
-	int	ret;
+int	test_ok(void);
+int	test_ko(void);
+int	test_segfault(void);
+int	test_buserror(void);
+int	test_kosegfault(void);
 
-	ret = 0;
-	if (stdout_launcher() == -1)
-		ret = -1;
-	if (signal_bonus_launcher() == -1)
-		ret = -1;
-	if (timeout_launcher() == -1)
-		ret = -1;
-	if (expected_signal_launcher() == -1)
-		ret = -1;
-	return (ret);
-}
+#endif

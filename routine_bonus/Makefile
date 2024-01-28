@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:45:50 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 14:10:41 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ NAME = real_tests
 SRCS = \
 	main_bonus.c \
 	$(addprefix $(STDOUT_DIR), $(STDOUT_SRC)) \
-	$(addprefix $(SIGNAL_DIR), $(SIGNAL_SRC))
+	$(addprefix $(SIGNAL_DIR), $(SIGNAL_SRC)) \
+	$(addprefix $(TIMEOUT_DIR), $(TIMEOUT_SRC)) \
+	$(addprefix $(EXPECTED_SIGNAL_DIR), $(EXPECTED_SIGNAL_SRC)) \
 
 SIGNAL_DIR = signals_bonus/
 SIGNAL_SRC = \
@@ -27,6 +29,15 @@ SIGNAL_SRC = \
 		03_test_sigpipe.c \
 		04_test_sigill.c \
 
+EXPECTED_SIGNAL_DIR = expected_signal_bonus/
+EXPECTED_SIGNAL_SRC = \
+		00_launcher.c \
+		01_ok.c \
+		02_ko.c \
+		03_segfault.c \
+		04_buserror.c \
+		05_ko_segfault.c \
+
 STDOUT_DIR = stdout_bonus/
 STDOUT_SRC = \
 		00_launcher.c \
@@ -34,6 +45,12 @@ STDOUT_SRC = \
 		02_invalidlength.c \
 		03_invalidlength2.c \
 		04_empty.c
+
+TIMEOUT_DIR = timeout_bonus/
+TIMEOUT_SRC = \
+		00_launcher.c \
+		01_basic.c \
+		02_ok.c \
 	
 
 BUILD_DIR := .build/

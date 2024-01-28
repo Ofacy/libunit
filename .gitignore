@@ -3,8 +3,10 @@
 tests/tests
 real_tests/real_tests
 libunit.a
+libunit_bonus.a
 */.build
 .objects
 .vscode
 routine_bonus/real_tests
 */*.log
+*/.trace

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:29:13 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 23:07:01 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:03:33 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int	add_test(t_test **test, char *name, int (*testm)(void))
 {
-	return (add_test_param(test, name, testm, param_init(0, NULL)));
+	return (add_test_param(test, name, testm, param_init(0, NULL, -1)));
 }
 
 int	add_test_param(t_test **test, char *name, int (*testm)(void), t_param param)
@@ -28,6 +28,8 @@ int	add_test_param(t_test **test, char *name, int (*testm)(void), t_param param)
 	t_test	*new;
 	t_test	*tmp;
 
+	if (!test || !name || !testm)
+		return (0);
 	new = malloc(sizeof(t_test));
 	if (!new)
 		return (0);
@@ -51,6 +53,7 @@ void	fork_normal_test(t_test *test, t_test *head, t_unit_total total)
 {
 	int	(*tmp)(void);
 
+	setup_alarm(test);
 	tmp = test->test;
 	test_list_clear(&head);
 	close(total.logfd);
@@ -94,7 +97,7 @@ int	run_tests(char *funcname, t_test *test)
 		return (test_list_clear(&test), TESTER_FAILED);
 	while (tmp)
 	{
-		if (result(run_test(tmp, test, total), funcname, tmp->name, &total)
+		if (result(run_test(tmp, test, total), funcname, tmp, &total)
 			== TESTER_FAILED)
 			return (test_list_clear(&test), TESTER_FAILED);
 		tmp = tmp->next;

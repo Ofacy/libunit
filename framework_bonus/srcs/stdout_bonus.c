@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/27 22:30:46 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 12:31:41 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	run_test_stdout(t_test *test, t_test *head, t_unit_total total)
 	pid = fork();
 	if (!pid)
 	{
+		setup_alarm(test);
 		run_stdout_test(fd, test, head, total);
 	}
 	if (close(fd[1]) == -1)

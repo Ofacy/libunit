@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/28 11:46:02 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 14:12:25 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ SOURCES_BONUS	=	framework_bonus/srcs/framework_bonus.c \
 					framework_bonus/srcs/stdout_bonus.c \
 					framework_bonus/srcs/logfile_bonus.c \
 					framework_bonus/srcs/total_bonus.c \
+					framework_bonus/srcs/alarm_bonus.c \
+					framework_bonus/srcs/expected_signal_bonus.c \
 					
 OBJ_DIR		=		.objects
 SOURCES 	=		framework/srcs/framework.c	\
