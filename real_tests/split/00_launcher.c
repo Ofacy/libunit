@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   00_launcher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 10:44:52 by alermolo         ###   ########.fr       */
+/*   Created: 2024/01/27 15:55:02 by alermolo          #+#    #+#             */
+/*   Updated: 2024/01/28 10:52:28 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
+#include "libunit.h"
+#include "split.h"
 
-int	main(void)
+int	split_launcher(void)
 {
-	int	ret;
+	t_test	*test;
 
-	ret = 0;
-	if (TEST_ALL || TEST_ATOI)
-		if (atoi_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_BZERO)
-		if (bzero_launcher() == -1)
-			ret = -1;
-	if (TEST_ALL || TEST_SPLIT)
-		if (split_launcher() == -1)
-			ret = -1;
-	return (ret);
+	test = NULL;
+	add_test(&test, "Basic test", split_basic_test);
+	return (run_tests("SPLIT", test));
 }
