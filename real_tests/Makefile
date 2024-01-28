@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:03:08 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 11:20:46 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,6 @@ SRCS = \
 	$(addprefix $(SPLIT_DIR), $(SPLIT_SRC)) \
 	$(addprefix $(LSTNEW_DIR), $(LSTNEW_SRC)) \
 
-# FT_STRLEN_DIR = split/
-# FT_STRLEN_SRC = \
-# 			00_launcher.c \
-
 ATOI_DIR = atoi/
 ATOI_SRC = \
 		00_launcher.c \
@@ -37,17 +33,19 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
+		
 SPLIT_DIR = split/
 SPLIT_SRC = \
 		00_launcher.c \
 		01_basic_test.c \
-		
 	
 LSTNEW_DIR = lstnew/
 LSTNEW_SRC = \
 		00_launcher.c \
-		01_basic_test.c \
-		02_null_content.c \
+		01_char_pointer.c \
+		02_int_pointer.c \
+		03_void_pointer.c \
+		04_null_content.c \
 
 BZERO_DIR = bzero/
 BZERO_SRC = \
@@ -85,6 +83,7 @@ ALL_TRACE = $(TRACE_DIR)all_
 ATOI_TRACE = $(TRACE_DIR)atoi_
 BZERO_TRACE = $(TRACE_DIR)bzero_
 SPLIT_TRACE = $(TRACE_DIR)split_
+LSTNEW_TRACE = $(TRACE_DIR)lstnew_
 
 ifeq ($(MODE), ATOI)
 TRACE =	$(ATOI_TRACE)
@@ -92,6 +91,8 @@ else ifeq ($(MODE), BZERO)
 TRACE =	$(BZERO_TRACE)
 else ifeq ($(MODE), SPLIT)
 TRACE =	$(SPLIT_TRACE)
+else ifeq ($(MODE), LSTNEW)
+TRACE =	$(LSTNEW_TRACE)
 else
 TRACE = $(ALL_TRACE)
 endif
@@ -100,6 +101,7 @@ MODULE = \
 	ATOI \
 	BZERO \
 	SPLIT \
+	LSTNEW \
 
 # *** CONFIG ***************************************************************** #
 
@@ -121,7 +123,7 @@ all : $(NAME)
 
 .PHONY : test
 test : $(NAME)
-	-@./$(NAME)
+	-@./$(NAME) ; echo -n
 
 $(NAME) : $(LIB_PATH) $(OBJS) $(addsuffix $(NAME), $(TRACE))
 	$(CC) $(CC_FLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
@@ -136,6 +138,9 @@ ifneq ($(MODE), BZERO)
 endif
 ifneq ($(MODE), SPLIT)
 	$(RM) $(SPLIT_TRACE)$(NAME)
+endif
+ifneq ($(MODE), LSTNEW)
+	$(RM) $(LSTNEW_TRACE)$(NAME)
 endif
 	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
 
@@ -171,7 +176,7 @@ re : fclean
 	$(MAKE)
 
 $(MODULE) :
-	$(MAKE) test MODE=$@ DEFINE_MODE="-D TEST_ALL=0 -D TEST_$@=1" MODULE_DIR="$@/"
+	@$(MAKE) test MODE=$@ DEFINE_MODE="-D TEST_ALL=0 -D TEST_$@=1" MODULE_DIR="$@/"
 
 $()
 

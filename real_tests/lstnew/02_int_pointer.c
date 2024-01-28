@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_launcher.c                                      :+:      :+:    :+:   */
+/*   02_int_pointer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 10:42:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 11:19:08 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/28 10:43:57 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/28 11:26:18 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft_lst.h"
 #include "libunit.h"
-#include "lst_new.h"
+#include <stdlib.h>
 
-int	lst_new_launcher(void)
+int	lstnew_int_pointer(void)
 {
-	t_test	*test;
+	t_list		*new;
+	const int	nbr;
 
-	test = NULL;
-	add_test(&test, "char pointer", lstnew_char_pointer);
-	add_test(&test, "int pointer", lstnew_int_pointer);
-	add_test(&test, "void pointer", lstnew_void_pointer);
-	add_test(&test, "null content", lstnew_null_content);
-	return (run_tests("LSTNEW", test));
+	new = ft_lstnew((void *)&nbr);
+	if (new && new->content == &nbr && new->next == NULL)
+	{
+		free(new);
+		return (TEST_OK);
+	}
+	free(new);
+	return (TEST_KO);
 }
