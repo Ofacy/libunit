@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/28 14:12:25 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/28 14:29:12 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,9 +53,9 @@ SOURCES 	=		framework/srcs/framework.c	\
 #--flags-----------------------------------------------------------------------#
 
 ifeq ($(BONUS), no)
-CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR)/incs -I $(INC_DIR)
+CFLAGS		=	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)/incs -I $(INC_DIR)
 else
-CFLAGS		=	-Wall -Wextra -Werror -I$(LIBFT_DIR)/incs -I $(B_INC_DIR)
+CFLAGS		=	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)/incs -I $(B_INC_DIR)
 endif
 
 DFLAGS		=	-g3 -fsanitize=address
@@ -74,6 +74,7 @@ LIBFT	=	$(LIBFT_DIR)/libft.a
 
 ifeq ($(BONUS), no)
 OBJECTS	=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
+DEPS =		$(OBJECTS:%.o=%.d)
 else
 OBJECTS	=	$(addprefix $(OBJ_DIR)/, $(SOURCES_BONUS:.c=.o))
 endif
@@ -90,7 +91,7 @@ $(NAME): $(OBJECTS)
 	cp $(LIBFT) ./$(NAME)
 	ar rs $(NAME) $(OBJECTS)
 
-$(OBJ_DIR)/%.o: %.c $(HEADERS) $(LIBFT)
+$(OBJ_DIR)/%.o: %.c $(LIBFT)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -110,7 +111,7 @@ debug:
 	$(MAKE) re DEBUG=yes
 
 bonus:
-	$(MAKE) BONUS=yes
+	@$(MAKE) BONUS=yes
 
 #--re, clean & fclean----------------------------------------------------------#
 
@@ -125,7 +126,9 @@ clean:
 fclean:
 	$(MAKE) clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME) libnunit_bonus.a
+	$(RM) $(NAME) libunit_bonus.a
+
+-include $(DEPS)
 
 #--norminette------------------------------------------------------------------#
 

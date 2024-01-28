@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 14:13:27 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/28 14:24:53 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-../libunit.a : FORCE
+../libunit_bonus.a : FORCE
 	@$(MAKE) -C $(@D) bonus
 
 ../libft/libft.a: FORCE 
@@ -132,6 +132,7 @@ clean :
 	@$(MAKE) $@ -C $(dir ../libft/libft.a)
 	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
+	rm -rf *.log
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean

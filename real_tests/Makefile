@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 12:31:00 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 14:13:59 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -186,6 +186,7 @@ fclean :
 re : fclean
 	$(MAKE)
 
+.PHONY : $(MODULE)
 $(MODULE) :
 	@$(MAKE) test MODE=$@ DEFINE_MODE="-D TEST_ALL=0 -D TEST_$@=1" MODULE_DIR="$@/"
 
