@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/28 14:29:12 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 14:32:09 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,10 +74,10 @@ LIBFT	=	$(LIBFT_DIR)/libft.a
 
 ifeq ($(BONUS), no)
 OBJECTS	=	$(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
-DEPS =		$(OBJECTS:%.o=%.d)
 else
 OBJECTS	=	$(addprefix $(OBJ_DIR)/, $(SOURCES_BONUS:.c=.o))
 endif
+DEPS =		$(OBJECTS:%.o=%.d)
 
 #--global rules----------------------------------------------------------------#
 
