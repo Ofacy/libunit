@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   00_launcher.c                                      :+:      :+:    :+:   */
+/*   05_no_sep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:55:02 by alermolo          #+#    #+#             */
-/*   Updated: 2024/01/27 16:05:41 by alermolo         ###   ########.fr       */
+/*   Created: 2024/01/27 15:55:54 by alermolo          #+#    #+#             */
+/*   Updated: 2024/01/28 11:05:25 by alermolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "libunit.h"
-#include "../real_tests.h"
+#include "split.h"
 
-int	test_launcher(void)
+char	**ft_split(char const *s, char c);
+
+int	split_no_sep(void)
 {
-	t_test	*test;
+	const char	*str = "Hello World!";
+	char		**split;
+	int			i;
 
-	test = NULL;
-	add_test(&test, "Basic test", split_basic_test());
-	return (run_tests("test", test));
+	i = 0;
+	split = ft_split(str, 'b');
+	if (!strcmp(split[0], "Hello World!") && !split[1])
+	{
+		while (split[i])
+			free(split[i++]);
+		free(split);
+		return (TEST_OK);
+	}
+	while (split[i])
+		free(split[i++]);
+	free(split);
+	return (TEST_KO);
 }

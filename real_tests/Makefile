@@ -6,7 +6,7 @@
 #    By: alermolo <alermolo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 10:48:26 by alermolo         ###   ########.fr        #
+#    Updated: 2024/01/28 11:18:39 by alermolo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,12 @@ SPLIT_DIR = split/
 SPLIT_SRC = \
 		00_launcher.c \
 		01_basic_test.c \
+		02_mult_sep.c	\
+		03_sep_start.c	\
+		04_sep_end.c	\
+		05_mult_start_end.c	\
+		06_no_sep.c		\
+		07_empty_string.c	\
 
 BUILD_DIR := .build/$(MODULE_DIR)
 
