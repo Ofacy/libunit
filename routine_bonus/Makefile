@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 14:10:41 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/28 14:13:27 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 ../libunit.a : FORCE
 	@$(MAKE) -C $(@D) bonus
 
-%.a: FORCE 
+../libft/libft.a: FORCE 
 	@$(MAKE) -C $(@D)
 	
 $(TRACE)% :
@@ -129,11 +129,15 @@ bonus : $(NAME)
 
 .PHONY : clean
 clean :
+	@$(MAKE) $@ -C $(dir ../libft/libft.a)
+	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
 	echo "$(YELLOW) $(NAME) building files removed! $(RESET)"
 
 .PHONY : fclean
 fclean :
+	@$(MAKE) $@ -C $(dir ../libft/libft.a)
+	@$(MAKE) $@ -C $(dir ../libunit_bonus.a)
 	rm -rf $(BUILD_DIR)
 	$(RM) $(NAME) $(NAME_BONUS) $(TRACE_DIR)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
