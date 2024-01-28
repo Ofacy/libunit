@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:44:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 10:55:49 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/28 11:00:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	main(void)
 			ret = -1;
 	if (TEST_ALL || TEST_LSTNEW)
 		if (lst_new_launcher() == -1)
+			ret = -1;
+	if (TEST_ALL || TEST_SPLIT)
+		if (split_launcher() == -1)
 			ret = -1;
 	return (ret);
 }

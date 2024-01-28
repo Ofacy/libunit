@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 10:57:59 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 11:03:08 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = \
 	main.c \
 	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
 	$(addprefix $(BZERO_DIR), $(BZERO_SRC)) \
+	$(addprefix $(SPLIT_DIR), $(SPLIT_SRC)) \
 	$(addprefix $(LSTNEW_DIR), $(LSTNEW_SRC)) \
 
 # FT_STRLEN_DIR = split/
@@ -36,6 +37,17 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
+SPLIT_DIR = split/
+SPLIT_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
+		
+	
+LSTNEW_DIR = lstnew/
+LSTNEW_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
+		02_null_content.c \
 
 BZERO_DIR = bzero/
 BZERO_SRC = \
@@ -44,12 +56,6 @@ BZERO_SRC = \
 		02_size_zero.c \
 		03_null.c \
 		04_negative_size.c \
-	
-LSTNEW_DIR = lstnew/
-LSTNEW_SRC = \
-		00_launcher.c \
-		01_basic_test.c \
-		02_null_content.c \
 
 BUILD_DIR := .build/$(MODULE_DIR)
 
@@ -60,7 +66,7 @@ DEPS = $(OBJS:%.o=%.d)
 # *** LIBRARIES ************************************************************** #
 
 LIB_NAME	=	ft \
-				unit 
+				unit
 LIB_PATH 	=	../libft/libft.a \
 				../libunit.a
 
@@ -78,11 +84,14 @@ TRACE_DIR = .trace/
 ALL_TRACE = $(TRACE_DIR)all_
 ATOI_TRACE = $(TRACE_DIR)atoi_
 BZERO_TRACE = $(TRACE_DIR)bzero_
+SPLIT_TRACE = $(TRACE_DIR)split_
 
 ifeq ($(MODE), ATOI)
 TRACE =	$(ATOI_TRACE)
 else ifeq ($(MODE), BZERO)
 TRACE =	$(BZERO_TRACE)
+else ifeq ($(MODE), SPLIT)
+TRACE =	$(SPLIT_TRACE)
 else
 TRACE = $(ALL_TRACE)
 endif
@@ -90,6 +99,7 @@ endif
 MODULE = \
 	ATOI \
 	BZERO \
+	SPLIT \
 
 # *** CONFIG ***************************************************************** #
 
@@ -124,15 +134,18 @@ endif
 ifneq ($(MODE), BZERO)
 	$(RM) $(BZERO_TRACE)$(NAME)
 endif
+ifneq ($(MODE), SPLIT)
+	$(RM) $(SPLIT_TRACE)$(NAME)
+endif
 	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
 
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c
 	@$(MKDIR)
 	$(CC) $(CFLAGS) $(DEFINE_MODE) $(CPPFLAGS) -c $< -o $@
 
-%.a: FORCE 
+%.a: FORCE
 	@$(MAKE) -C $(@D)
-	
+
 $(TRACE)% :
 	@$(MKDIR)
 	@touch $@
@@ -166,7 +179,7 @@ $()
 print% :
 	@echo $(patsubst print%,%,$@)=
 	@echo $($(patsubst print%,%,$@))
-	
+
 # *** SPECIAL TARGETS ******************************************************** #
 
 .SILENT : clean fclean re debug %debug norminette

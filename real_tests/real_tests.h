@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 15:45:07 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 10:45:31 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/01/28 11:01:16 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@
 #  define TEST_LSTNEW 0
 # endif
 
+# ifndef TEST_SPLIT
+#  define TEST_SPLIT 0
+# endif
+
 int	atoi_launcher(void);
 int	bzero_launcher(void);
 int	lst_new_launcher(void);
+int	split_launcher(void);
 
 #endif
