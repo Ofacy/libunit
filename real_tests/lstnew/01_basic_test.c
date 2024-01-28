@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   real_tests.h                                       :+:      :+:    :+:   */
+/*   01_basic_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 15:45:07 by ibertran          #+#    #+#             */
-/*   Updated: 2024/01/28 10:45:31 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/01/28 10:43:57 by ibertran          #+#    #+#             */
+/*   Updated: 2024/01/28 10:52:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REAL_TESTS_H
-# define REAL_TESTS_H
+#include "libft_lst.h"
+#include "libunit.h"
+#include <stdlib.h>
 
-# ifndef TEST_ALL
-#  define TEST_ALL 1
-# endif
+int	lstnew_basic_test(void)
+{
+	t_list		*new;
+	const int	nbr;
 
-# ifndef TEST_ATOI
-#  define TEST_ATOI 0
-# endif
-
-# ifndef TEST_BZERO
-#  define TEST_BZERO 0
-# endif
-
-# ifndef TEST_LSTNEW
-#  define TEST_LSTNEW 0
-# endif
-
-int	atoi_launcher(void);
-int	bzero_launcher(void);
-int	lst_new_launcher(void);
-
-#endif
+	new = ft_lstnew((void *)&nbr);
+	if (new && new->content == &nbr && new->next == NULL)
+	{
+		free(new);
+		return (TEST_OK);
+	}
+	free(new);
+	return (TEST_KO);
+}

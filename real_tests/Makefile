@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/27 23:34:11 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 10:57:59 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = \
 	main.c \
 	$(addprefix $(ATOI_DIR), $(ATOI_SRC)) \
 	$(addprefix $(BZERO_DIR), $(BZERO_SRC)) \
+	$(addprefix $(LSTNEW_DIR), $(LSTNEW_SRC)) \
 
 # FT_STRLEN_DIR = split/
 # FT_STRLEN_SRC = \
@@ -35,8 +36,6 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
-		
-# ATOI_OBJS = $(ATOI_SRC:%c=$(BUILD_DIR)%.o)
 
 BZERO_DIR = bzero/
 BZERO_SRC = \
@@ -45,6 +44,12 @@ BZERO_SRC = \
 		02_size_zero.c \
 		03_null.c \
 		04_negative_size.c \
+	
+LSTNEW_DIR = lstnew/
+LSTNEW_SRC = \
+		00_launcher.c \
+		01_basic_test.c \
+		02_null_content.c \
 
 BUILD_DIR := .build/$(MODULE_DIR)
 
