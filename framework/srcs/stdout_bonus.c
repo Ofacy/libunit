@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:15:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 12:31:41 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 16:46:11 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,22 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include "libft.h"
-#include "get_next_line.h"
 #include "libunit_bonus.h"
-#include "libft.h"
 
-int	is_chunk_equal(char *chunk, char *stdout, size_t *stdoutchar, size_t len)
+#define STDOUT_BUFFER_LEN 100
+
+int	is_chunk_equal(t_stdout_checker *checker, char *stdout)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (chunk[i])
+	while (i < checker->chunklen)
 	{
-		if (*stdoutchar > len || !stdout[*stdoutchar] || \
-			chunk[i] != stdout[*stdoutchar])
+		if (checker->stdoutpos > checker->stdoutlen || \
+			!stdout[checker->stdoutpos] || \
+			checker->chunk[i] != stdout[checker->stdoutpos])
 			return (TEST_KO);
-		(*stdoutchar)++;
+		(checker->stdoutpos)++;
 		i++;
 	}
 	return (TEST_OK);
@@ -38,30 +39,26 @@ int	is_chunk_equal(char *chunk, char *stdout, size_t *stdoutchar, size_t len)
 
 int	is_stdout_equal(t_test *test, int fd)
 {
-	char	*line;
-	size_t	charcnt;
-	int		ret;
-	int		gnlstatus;
-	size_t	stdoutlen;
+	t_stdout_checker	checker;
+	char				chunk[STDOUT_BUFFER_LEN];
 
-	ret = TEST_OK;
-	charcnt = 0;
-	gnlstatus = get_next_line(fd, &line);
-	stdoutlen = ft_strlen(test->param.stdout);
-	while (line)
+	checker.result = TEST_OK;
+	checker.stdoutlen = ft_strlen(test->param.stdout);
+	checker.stdoutpos = 0;
+	checker.chunklen = read(fd, chunk, STDOUT_BUFFER_LEN);
+	while (checker.chunklen > 0)
 	{
-		if (ret == TEST_OK && \
-			is_chunk_equal(line, test->param.stdout, &charcnt, stdoutlen) \
-				!= TEST_OK)
-			ret = TEST_KO;
-		free(line);
-		gnlstatus = get_next_line(fd, &line);
+		checker.chunk = chunk;
+		if (checker.result == TEST_OK && \
+			is_chunk_equal(&checker, test->param.stdout) != TEST_OK)
+			checker.result = TEST_KO;
+		checker.chunklen = read(fd, chunk, STDOUT_BUFFER_LEN);
 	}
-	if (close(fd) == -1 || gnlstatus == -1)
-		ret = TESTER_FAILED;
-	if (charcnt != stdoutlen)
-		ret = TEST_KO;
-	return (ret);
+	if (checker.chunklen == -1)
+		checker.result = TEST_KO;
+	if (checker.stdoutpos != checker.stdoutlen)
+		checker.result = TEST_KO;
+	return (checker.result);
 }
 
 int	run_stdout_test(int fd[2], t_test *test, t_test *head, t_unit_total total)

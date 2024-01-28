@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdout_bonus.h                                     :+:      :+:    :+:   */
+/*   05_uninitialized.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 19:35:28 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 16:50:22 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/28 16:49:34 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/28 16:51:23 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDOUT_BONUS_H
-# define STDOUT_BONUS_H
+#include <unistd.h>
+#include "libunit.h"
 
-# include "libunit_bonus.h"
+int	stdout_uninitialized_test(void)
+{
+	char	str[20];
 
-int	stdout_basic_test(void);
-int	stdout_invalid_length_test(void);
-int	stdout_invalid_length2_test(void);
-int	stdout_empty_test(void);
-int	stdout_uninitialized_test(void);
-
-#endif
+	str[0] = 'H';
+	str[1] = 'i';
+	str[2] = '\0';
+	write(1, str, 20);
+	return (TEST_OK);
+}

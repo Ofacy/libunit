@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:56:23 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 14:10:25 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 16:40:14 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	expected_signal_launcher(void)
 	t_test	*test;
 
 	test = NULL;
-	add_test_param(&test, "OK", test_ok, \
+	add_test_param(&test, "OK (expected SIGSEV)", test_ok, \
 	param_init(0, NULL, SIGSEGV));
 	add_test(&test, "KO", test_ko);
 	add_test_param(&test, "Expected Segmentation Fault", test_segfault, \

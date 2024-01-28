@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:17:00 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 13:55:07 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 16:34:48 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@
 # define MSG_SIGPIPE_NOCOLOR "[SIGPIPE]"
 # define MSG_SIGILL_NOCOLOR "[SIGILL]"
 # define MSG_TIMEOUT_NOCOLOR "[TIMEOUT]"
+
+typedef struct s_stdout_checker
+{
+	char	*chunk;
+	int		chunklen;
+	size_t	stdoutlen;
+	size_t	stdoutpos;
+	int		result;
+}	t_stdout_checker;
 
 typedef struct s_param
 {

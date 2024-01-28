@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:35:07 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 13:59:59 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 16:50:44 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	stdout_launcher(void)
 	param_init(0, "OK", -1));
 	add_test_param(&testlist, "Empty OK", stdout_empty_test, \
 	param_init(0, "", -1));
+	add_test_param(&testlist, "Uninitialized", stdout_uninitialized_test, \
+	param_init(0, "Hi", -1));
 	return (run_tests("STDOUT", testlist));
 }

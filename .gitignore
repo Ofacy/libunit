@@ -10,3 +10,4 @@ libunit_bonus.a
 routine_bonus/real_tests
 */*.log
 */.trace
+libft/libft.a
