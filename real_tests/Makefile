@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 11:31:44 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 12:02:58 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,6 @@ ATOI_SRC = \
 		07_invalid.c \
 		08_overflow.c \
 		09_underflow.c
-		
-SPLIT_DIR = split/
-SPLIT_SRC = \
-		00_launcher.c \
-		01_basic_test.c \
 	
 LSTNEW_DIR = lstnew/
 LSTNEW_SRC = \
@@ -142,16 +137,16 @@ ifdef MODE
 	$(RM) $(ALL_TRACE)$(NAME)
 endif
 ifneq ($(MODE), ATOI)
-	$(RM) $(ATOI_TRACE)$(NAME)
+	@$(RM) $(ATOI_TRACE)$(NAME)
 endif
 ifneq ($(MODE), BZERO)
-	$(RM) $(BZERO_TRACE)$(NAME)
+	@$(RM) $(BZERO_TRACE)$(NAME)
 endif
 ifneq ($(MODE), SPLIT)
-	$(RM) $(SPLIT_TRACE)$(NAME)
+	@$(RM) $(SPLIT_TRACE)$(NAME)
 endif
 ifneq ($(MODE), LSTNEW)
-	$(RM) $(LSTNEW_TRACE)$(NAME)
+	@$(RM) $(LSTNEW_TRACE)$(NAME)
 endif
 	@echo "$(GREEN) $(NAME) has been built! $(RESET)"
 

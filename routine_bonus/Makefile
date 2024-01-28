@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/13 00:31:16 by ibertran          #+#    #+#              #
-#    Updated: 2024/01/28 10:35:23 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/01/28 11:45:50 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,10 @@ DEPS = $(OBJS:%.o=%.d)
 # *** LIBRARIES ************************************************************** #
 
 LIB_NAME	=	ft \
-				unit \
+				unit_bonus \
 				m
 LIB_PATH 	=	../libft/libft.a \
-				../libunit.a
+				../libunit_bonus.a
 
 HEADERS	= tests.h
 
@@ -118,13 +118,12 @@ clean :
 .PHONY : fclean
 fclean :
 	rm -rf $(BUILD_DIR)
-	$(RM) $(NAME) $(NAME_BONUS) $(TRACE)
+	$(RM) $(NAME) $(NAME_BONUS) $(TRACE_DIR)
 	echo "$(YELLOW) $(NAME) files removed! $(RESET)"
 
 .PHONY : re
 re : fclean
 	$(MAKE)
-
 
 .PHONY : print%
 print% :

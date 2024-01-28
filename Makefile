@@ -3,16 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/27 23:38:07 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/28 11:46:02 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 #--variables-------------------------------------------------------------------#
 
 NAME		=	libunit.a
+
+ifeq ($(BONUS), yes)
+NAME = libunit_bonus.a
+endif
+
 DEBUG		=	no
 BONUS		=	no
 
@@ -118,7 +123,7 @@ clean:
 fclean:
 	$(MAKE) clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) libnunit_bonus.a
 
 #--norminette------------------------------------------------------------------#
 
