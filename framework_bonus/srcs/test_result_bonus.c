@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:33:35 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/28 14:07:52 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/28 14:17:44 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	increment_total(int *result, char *func, t_test *test, t_unit_total *total)
 		else
 		{
 			total->ko++;
-			*result = TEST_KO;
+			if (*result == TEST_OK)
+				*result = TEST_KO;
 			return (0);
 		}
 	}
