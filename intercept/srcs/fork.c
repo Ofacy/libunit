@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dup2.c                                             :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 15:56:19 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 20:22:59 by lcottet          ###   ########.fr       */
+/*   Created: 2024/01/30 20:20:08 by lcottet           #+#    #+#             */
+/*   Updated: 2024/01/30 20:24:13 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #define _GNU_SOURCE
 #include "intercept.h"
 #include <dlfcn.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-int	(*_dup2)(int oldfd, int newfd) = NULL;
+pid_t	(*_fork)(void) = NULL;
 
-int	dup2(int oldfd, int newfd) {
+pid_t	fork(void) {
 	t_error *error;
-	int		out;
+	pid_t		out;
 
-	if (!_dup2) {
-		_dup2 = (int (*)(int oldfd, int newfd)) dlsym(RTLD_NEXT, "dup2");
+	if (!_fork) {
+		_fork = (pid_t (*)(void)) dlsym(RTLD_NEXT, "fork");
 	}
-	error = get_error(method_dup2);
+	error = get_error(method_fork);
 	if (error != NULL)
 	{
 		errno = error->errnooverride;
 		return (error->returnvalue);
 	}
-	out = _dup2(oldfd, newfd);
+	out = _fork();
 	if (out == -1)
 		return (out);
-	if (intercept_enabled)
-		intercept_methods[method_dup2].successfullcall++;
+	if (out > 0 && intercept_enabled)
+		intercept_methods[method_fork].successfullcall++;
 	return (out);
 }

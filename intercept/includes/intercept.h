@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:36:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 18:46:44 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/30 20:24:07 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 	KEY_DEF( method_free, "free" ), \
 	KEY_DEF( method_read, "read" ), \
 	KEY_DEF( method_write, "write" ), \
+	KEY_DEF( method_fork, "fork" ), \
+	KEY_DEF( method_wait, "wait" ), \
 	KEY_DEF( method_open, "open" ) \
 
 # define KEY_DEF( identifier, name )  identifier
@@ -61,5 +63,6 @@ t_error	new_error(unsigned long callindex, int err, int ret);
 int	add_error(int methodid, unsigned long callindex, int err, int ret);
 void	init_failtree(void);
 int		print_potential_leaks(void);
+int		has_potential_leaks(void);
 
 #endif

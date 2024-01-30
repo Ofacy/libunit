@@ -6,12 +6,13 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:45:27 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 18:04:16 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/30 20:13:08 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intercept.h"
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 t_method intercept_methods[] = {
@@ -45,8 +46,11 @@ t_error *get_error(int methodid)
 	t_error		*error;
 	t_error		*temperror;
 
+	
 	if (!intercept_enabled)
 		return (NULL);
+	intercept_enabled = 0;
+	intercept_enabled = 1;
 	method = &intercept_methods[methodid];
 	error = NULL;
 	for (unsigned long i = 0; i < method->tofail.total; i++)
