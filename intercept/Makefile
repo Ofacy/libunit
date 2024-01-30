@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/30 17:52:39 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/30 19:49:09 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,11 @@ SOURCES = \
 	srcs/free.c \
 	srcs/read.c \
 	srcs/write.c \
+	srcs/dup2.c \
 	srcs/intercept.c \
 	srcs/leakcheck.c \
-	srcs/dup2.c \
 	srcs/failtree.c \
+	srcs/ld_preload.c \
 
 OBJ_DIR = .objects
 
