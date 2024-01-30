@@ -11,3 +11,4 @@ routine_bonus/real_tests
 */*.log
 */.trace
 libft/libft.a
+intercept/intercept.so
