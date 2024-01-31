@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:36:53 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 20:24:07 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/31 01:24:47 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 	KEY_DEF( method_malloc, "malloc" ), \
 	KEY_DEF( method_dup2, "dup2" ), \
 	KEY_DEF( method_close, "close" ), \
+	KEY_DEF( method_pipe, "pipe" ), \
 	KEY_DEF( method_free, "free" ), \
 	KEY_DEF( method_read, "read" ), \
 	KEY_DEF( method_write, "write" ), \

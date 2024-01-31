@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:17:03 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 20:36:55 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/31 01:29:30 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void print_trace (void)
 
 	free (strings);
 }
+
 t_error	intercept_errors[] = {
 	[method_close]={-1, EIO, 0},
 	[method_dup2]={-1, EIO, 0},
@@ -53,19 +54,19 @@ t_error *split_with_fork(int methodid, t_error *err)
 	
 	(void)err;
 	intercept_enabled = 0;
-	printf("Forked for FAILED \"%s\", call %ld, waiting for child\n", intercept_methods[methodid].name, intercept_methods[methodid].callcount);
+	printf("Forked for FAILED \"%s\", call %ld\n", intercept_methods[methodid].name, intercept_methods[methodid].callcount);
+	print_trace();
 	pid = fork();
-	intercept_enabled = 1;
-	if (!pid)
+	if (pid == 0)
 	{
-		intercept_enabled = 0;
-		print_trace();
-		wait(NULL);
-		printf("Resuming NORMAL execution.\n");
 		intercept_enabled = 1;
-		return (NULL);
+		return (&intercept_errors[methodid]);
 	}
-	return (&intercept_errors[methodid]);
+	waitpid(pid, NULL, 0);
+	intercept_enabled = 0;
+	printf("Resuming NORMAL execution for \"%s\", call %ld.\n", intercept_methods[methodid].name, intercept_methods[methodid].callcount);
+	intercept_enabled = 1;
+	return (NULL);
 }
 
 void	init_failtree(void)

@@ -6,7 +6,7 @@
 /*   By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:02:08 by lcottet           #+#    #+#             */
-/*   Updated: 2024/01/30 20:32:54 by lcottet          ###   ########.fr       */
+/*   Updated: 2024/01/31 01:26:10 by lcottet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int		print_potential_leaks(void)
 	{
 		return (printf("Potential memory leaks detected, %ld malloc for %ld free\n", intercept_methods[method_malloc].successfullcall, intercept_methods[method_free].successfullcall));
 	}
-	if (intercept_methods[method_open].successfullcall > intercept_methods[method_close].successfullcall)
+	if (intercept_methods[method_open].successfullcall + (intercept_methods[method_pipe].successfullcall * 2) > intercept_methods[method_close].successfullcall)
 	{
-		return (printf("Potential FD leaks detected, %ld open for %ld close\n", intercept_methods[method_open].successfullcall, intercept_methods[method_close].successfullcall));
+		return (printf("Potential FD leaks detected, %ld open and %ld pipe for %ld close\n", intercept_methods[method_open].successfullcall, intercept_methods[method_pipe].successfullcall, intercept_methods[method_close].successfullcall));
 	}
 	return (0);
 }

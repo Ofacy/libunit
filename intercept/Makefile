@@ -6,7 +6,7 @@
 #    By: lcottet <lcottet@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 19:17:58 by alermolo          #+#    #+#              #
-#    Updated: 2024/01/30 20:22:38 by lcottet          ###   ########.fr        #
+#    Updated: 2024/01/31 01:25:06 by lcottet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SOURCES = \
 	srcs/dup2.c \
 	srcs/fork.c \
 	srcs/wait.c \
+	srcs/pipe.c \
 	srcs/intercept.c \
 	srcs/leakcheck.c \
 	srcs/failtree.c \
